@@ -8,4 +8,6 @@ export interface ITmdb {
   title: string;
   name: string;
   vote_average: number;
+  genre_ids: number[];
 }
+

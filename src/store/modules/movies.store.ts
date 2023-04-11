@@ -44,6 +44,8 @@ export function getAsyncMovies() {
       return dispatch(getMovies(moviesList));
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 }

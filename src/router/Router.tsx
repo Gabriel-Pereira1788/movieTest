@@ -5,6 +5,9 @@ import {
 } from "@react-navigation/stack";
 import React from "react";
 import Home from "../screens/private/home/View";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Explore from "../screens/private/Explore/View";
+import Favorites from "../screens/private/Favorites/View";
 
 type Props = {};
 
@@ -13,6 +16,24 @@ const TransitionScreenOptions = {
 };
 
 const Stack = createStackNavigator();
+const NativeStack = createNativeStackNavigator();
+
+export function HomeNavigator() {
+  return (
+    <NativeStack.Navigator
+      screenOptions={{
+        headerTransparent: true,
+        headerTitle: "",
+      }}
+    >
+      <NativeStack.Screen component={Home} name="home" />
+
+      <NativeStack.Screen component={Explore} name="explore" />
+
+      <NativeStack.Screen component={Favorites} name="favorites" />
+    </NativeStack.Navigator>
+  );
+}
 
 export default function Router({}: Props) {
   return (
@@ -20,7 +41,7 @@ export default function Router({}: Props) {
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={HomeNavigator}
           options={{
             headerTransparent: true,
             headerTitle: "",

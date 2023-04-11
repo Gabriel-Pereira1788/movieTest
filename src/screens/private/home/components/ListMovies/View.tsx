@@ -33,8 +33,10 @@ function ListMovies({
           snapToAlignment="center"
           decelerationRate="fast"
           contentContainerStyle={{
+            height: SIZES.height / 2 + 100,
             alignItems: "center",
             justifyContent: "center",
+            marginTop: 30,
           }}
           data={topRaitingMovies?.list}
           getItemLayout={(data, index) => {

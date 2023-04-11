@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../store/store";
-import { getAsyncMovies } from "../../../store/modules/movies.store";
+import {
+  getAsyncMovies,
+  setFocusMovie,
+} from "../../../store/modules/movies.store";
 import { ViewToken } from "react-native/types";
 import { ITmdb } from "../../../models/Itmdb";
 
@@ -11,10 +14,8 @@ export function useHome() {
   );
   const dispatch = useAppDispatch();
 
-  const [focusedMovie, setFocusMovie] = React.useState<ITmdb | null>(null);
-
   const topRaitingMovies = React.useMemo(() => {
-    return dataMovies.find((dataMovie) => dataMovie.identify === "top");
+    return dataMovies.find((dataMovie) => dataMovie.identify === "popular");
   }, [dataMovies]);
 
   const initialScrollIndex = topRaitingMovies
@@ -33,7 +34,7 @@ export function useHome() {
         viewableItems.length > 0 ? viewableItems[0].item : null;
       console.log(viewableItems.length);
 
-      setFocusMovie(movieFocused);
+      dispatch(setFocusMovie(movieFocused));
     },
     []
   );
@@ -42,8 +43,15 @@ export function useHome() {
     dispatch(getAsyncMovies());
   }, []);
 
+  React.useEffect(() => {
+    if (!!topRaitingMovies) {
+      const defaultSelected = topRaitingMovies.list[0];
+      dispatch(setFocusMovie(defaultSelected));
+    }
+  }, [topRaitingMovies]);
+
   return {
-    focusedMovie,
+    focusedMovie: focusMovie,
     topRaitingMovies,
     initialScrollIndex,
     loading,

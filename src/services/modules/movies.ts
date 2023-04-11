@@ -15,8 +15,15 @@ export async function getMoviesList(): Promise<IDataMovie[]> {
   console.log("get");
   return [
     {
-      identify: "top",
+      identify: "popular",
       title: "Em alta",
+      list: await fetchData(
+        `/movie/popular?api_key=${TMDB_KEY}&language=pt-BR&page=1`
+      ),
+    },
+    {
+      identify: "top",
+      title: "Relevantes",
       list: await fetchData(
         `/movie/top_rated?language=pt-BR&api_key=${TMDB_KEY}`
       ),
