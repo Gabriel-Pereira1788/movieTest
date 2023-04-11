@@ -4,8 +4,9 @@ type Props = {};
 
 export default function Favorites({}: Props) {
   return (
-    <S.VStack>
-      <S.Text>teste</S.Text>
+    <S.VStack flex={1} backgroundColor="background.main">
+      <S.Text color="#fff">teste</S.Text>
     </S.VStack>
   );
 }
+

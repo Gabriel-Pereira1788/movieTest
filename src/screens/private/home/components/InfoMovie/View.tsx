@@ -16,7 +16,7 @@ export default function InfoMovie({ title, genre_ids }: InfoMovieProps) {
       justifyContent="flex-end"
       space={3}
       px={3}
-      mt={7}
+      mt={5}
     >
       <Animated.View
         key={title}

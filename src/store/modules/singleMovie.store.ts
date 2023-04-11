@@ -1,9 +1,10 @@
 import { AnyAction, Dispatch, createSlice } from "@reduxjs/toolkit";
-import { ITmdb } from "../../models/Itmdb";
+
 import { MoviesAPI } from "../../services/modules/movies";
+import { ISingleMovie } from "../../models/DataMovie";
 
 interface State {
-  dataMovie: ITmdb | null;
+  dataMovie: ISingleMovie | null;
   loading: boolean;
 }
 

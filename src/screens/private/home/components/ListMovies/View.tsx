@@ -30,7 +30,7 @@ function ListMovies({ popularMovies }: ListMoviesProps) {
           decelerationRate="fast"
           contentContainerStyle={{
             flexGrow: 1,
-            height: SIZES.height / 2 + 100,
+            height: "auto",
             alignItems: "center",
             justifyContent: "center",
             marginTop: 30,

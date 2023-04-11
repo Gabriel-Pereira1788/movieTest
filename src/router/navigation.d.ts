@@ -1,7 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootParamListI = {
-  Home: undefined;
+  Home:
+    | undefined
+    | {
+        screen: "explore" | "home" | "favorites";
+      };
   SingleMovie: { id: number };
 };
 

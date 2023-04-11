@@ -10,6 +10,7 @@ import Explore from "../screens/private/Explore/View";
 import Favorites from "../screens/private/Favorites/View";
 import { RootParamListI } from "./navigation";
 import SingleMovie from "../screens/private/singleMovie/View";
+import AddFavorite from "../components/AddFavorite/View";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ export function HomeNavigator() {
       screenOptions={{
         headerTransparent: true,
         headerTitle: "",
+        headerLeft: () => <></>,
       }}
     >
       <NativeStack.Screen component={Home} name="home" />
@@ -56,6 +58,8 @@ export default function Router({}: Props) {
           options={{
             headerTransparent: true,
             headerTitle: "",
+            headerTintColor: "#fff",
+            headerRight: () => <AddFavorite />,
           }}
         />
       </Stack.Navigator>

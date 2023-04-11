@@ -1,4 +1,4 @@
-import { ITmdb } from "./Itmdb";
+import { Cast, ITmdb } from "./Itmdb";
 
 export interface IRandomData {
   randomList: IDataMovie;
@@ -9,5 +9,10 @@ export interface IDataMovie {
   identify: string;
   title: string;
   list: ITmdb[];
+}
+
+export interface ISingleMovie {
+  data: ITmdb;
+  cast: Cast[];
 }
 

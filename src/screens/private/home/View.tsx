@@ -1,17 +1,14 @@
 import React from "react";
 import { ImageBackground } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as S from "native-base";
 //*hooks
 import { useHome } from "./useHome";
 //*components
-import CardMovie from "./components/CardMovie/View";
 import ListMovies from "./components/ListMovies/View";
 import InfoMovie from "./components/InfoMovie/View";
 import BottomTab from "../../../components/BottomTab/View";
 import RenderIF from "../../../components/RenderIF/View";
 //*constants
-import { SIZES } from "../../../constants/sizes";
 import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
 
 export default function Home() {

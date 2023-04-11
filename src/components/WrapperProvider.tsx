@@ -7,6 +7,7 @@ import {
 } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { MAIN } from "../styles/theme";
 
 type Props = {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ export default function WrapperProvider({ children }: Props) {
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <NativeBaseProvider>
+        <NativeBaseProvider theme={MAIN}>
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             {children}
           </SafeAreaProvider>

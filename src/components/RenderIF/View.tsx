@@ -14,6 +14,10 @@ export default function RenderIF({
   if (!condition && AlternativeComponent) {
     return <>{AlternativeComponent}</>;
   }
-  return <>{children}</>;
+
+  if (!condition) {
+    return <></>;
+  }
+  return <>{condition && children}</>;
 }
 

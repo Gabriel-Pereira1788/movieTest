@@ -1,5 +1,5 @@
 import { TMDB_KEY } from "../../constants/TMDB";
-import { IDataMovie } from "../../models/DataMovie";
+import { IDataMovie, ISingleMovie } from "../../models/DataMovie";
 import { api } from "../api";
 
 const mountURL = (route: string, media: string): string =>
@@ -17,11 +17,21 @@ async function getMoviesByCategory(category: string) {
   );
 }
 
-async function getMovieById(id: number) {
+async function getMovieById(id: number): Promise<ISingleMovie> {
+  const dataMOvieUrl = `/movie/${id}?api_key=${TMDB_KEY}&language=pt-BR`;
+  const dataCreditsUrl = `/movie/${id}/credits?api_key=${TMDB_KEY}&language=pt-BR`;
   const { data } = await api.get(
     `/movie/${id}?api_key=${TMDB_KEY}&language=pt-BR`
   );
-  return data;
+
+  const [{ data: dataMovie }, { data: dataCredits }] = await Promise.all([
+    api.get(dataMOvieUrl),
+    api.get(dataCreditsUrl),
+  ]);
+  return {
+    data: dataMovie,
+    cast: dataCredits.cast,
+  };
 }
 
 async function getMoviesList(): Promise<IDataMovie[]> {
