@@ -9,7 +9,7 @@ type Props = {
 export default function BottomTab({ currentPath }: Props) {
   return (
     <S.HStack
-      backgroundColor={"rgba(0,0,0,0.9"}
+      backgroundColor={"rgba(0,0,0,0.7)"}
       borderTopColor="#dddddd15"
       borderWidth={1}
       w={SIZES.width}

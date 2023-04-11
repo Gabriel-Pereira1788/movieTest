@@ -11,7 +11,20 @@ async function fetchData(url: string) {
   return data.results;
 }
 
-export async function getMoviesList(): Promise<IDataMovie[]> {
+async function getMoviesByCategory(category: string) {
+  return await fetchData(
+    `/movie/${category}?api_key=${TMDB_KEY}&language=pt-BR&page=1`
+  );
+}
+
+async function getMovieById(id: number) {
+  const { data } = await api.get(
+    `/movie/${id}?api_key=${TMDB_KEY}&language=pt-BR`
+  );
+  return data;
+}
+
+async function getMoviesList(): Promise<IDataMovie[]> {
   console.log("get");
   return [
     {
@@ -55,4 +68,10 @@ export async function getMoviesList(): Promise<IDataMovie[]> {
     },
   ];
 }
+
+export const MoviesAPI = {
+  getMoviesList,
+  getMoviesByCategory,
+  getMovieById,
+};
 

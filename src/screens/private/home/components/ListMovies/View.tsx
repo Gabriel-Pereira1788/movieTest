@@ -1,44 +1,41 @@
 import React from "react";
-import { IDataMovie } from "../../../../../models/DataMovie";
-import { Animated, FlatList, ViewToken, ViewabilityConfig } from "react-native";
+import { Animated, FlatList, ListRenderItem } from "react-native";
+//*constants
 import { SIZES } from "../../../../../constants/sizes";
+//*components
 import CardMovie from "../CardMovie/View";
+//*hooks
+import { useListMovies } from "./useListMovies";
+//*types
+import { ITmdb } from "../../../../../models/Itmdb";
 
 interface ListMoviesProps {
-  topRaitingMovies: IDataMovie | undefined;
-  onViewableItemsChanged: ({
-    viewableItems,
-  }: {
-    viewableItems: ViewToken[];
-    changed: ViewToken[];
-  }) => void;
+  popularMovies: ITmdb[] | undefined;
 }
-function ListMovies({
-  topRaitingMovies,
-  onViewableItemsChanged,
-}: ListMoviesProps) {
-  console.log("render");
-  const FlatListAnimated = Animated.createAnimatedComponent(FlatList);
+function ListMovies({ popularMovies }: ListMoviesProps) {
+  const FlatListAnimated = Animated.createAnimatedComponent(FlatList<ITmdb>);
 
-  const viewConfig: ViewabilityConfig = {
-    viewAreaCoveragePercentThreshold: 20,
-    waitForInteraction: true,
-  };
+  const { viewConfig, onViewableItemsChanged } = useListMovies();
+
+  const renderItem: ListRenderItem<ITmdb> = ({ item }) => (
+    <CardMovie {...item} />
+  );
 
   return (
     <>
-      {topRaitingMovies && topRaitingMovies.list.length > 0 && (
+      {popularMovies && popularMovies.length > 0 && (
         <FlatListAnimated
           pagingEnabled
           snapToAlignment="center"
           decelerationRate="fast"
           contentContainerStyle={{
+            flexGrow: 1,
             height: SIZES.height / 2 + 100,
             alignItems: "center",
             justifyContent: "center",
             marginTop: 30,
           }}
-          data={topRaitingMovies?.list}
+          data={popularMovies}
           getItemLayout={(data, index) => {
             return {
               length: SIZES.width - 50,
@@ -49,7 +46,7 @@ function ListMovies({
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewConfig}
           horizontal={true}
-          renderItem={({ item }) => <CardMovie {...item} />}
+          renderItem={renderItem}
         />
       )}
     </>

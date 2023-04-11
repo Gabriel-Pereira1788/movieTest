@@ -1,62 +1,61 @@
 import React from "react";
-import * as S from "native-base";
-import { useHome } from "./useHome";
-import CardMovie from "./components/CardMovie/View";
-import { SIZES } from "../../../constants/sizes";
-import { Animated, FlatList, ImageBackground } from "react-native";
-import ListMovies from "./components/ListMovies/View";
-import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
-import InfoMovie from "./components/InfoMovie/View";
+import { ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as S from "native-base";
+//*hooks
+import { useHome } from "./useHome";
+//*components
+import CardMovie from "./components/CardMovie/View";
+import ListMovies from "./components/ListMovies/View";
+import InfoMovie from "./components/InfoMovie/View";
 import BottomTab from "../../../components/BottomTab/View";
 import RenderIF from "../../../components/RenderIF/View";
-type Props = {};
+//*constants
+import { SIZES } from "../../../constants/sizes";
+import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
 
-export default function Home({}: Props) {
-  const { topRaitingMovies, focusedMovie, loading, onViewableItemsChanged } =
-    useHome();
+export default function Home() {
+  const { popularMovies, focusMovie, loading } = useHome();
 
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={{ uri: `${TMBD_BACKDROP_URL}${focusedMovie?.backdrop_path}` }}
+      source={{ uri: `${TMBD_BACKDROP_URL}${focusMovie?.backdrop_path}` }}
       blurRadius={25}
     >
-      <S.VStack
-        paddingTop="10%"
+      <S.ScrollView
         flex={1}
         backgroundColor="rgba(0,0,0,0.8)"
-        alignItems="center"
-        justifyContent="center"
+        contentContainerStyle={{
+          position: "relative",
+          flexGrow: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
         <RenderIF
-          condition={!loading && !!topRaitingMovies}
+          condition={!loading && !!popularMovies}
           AlternativeComponent={<S.Spinner size="lg" color="red.600" />}
         >
-          <ListMovies
-            onViewableItemsChanged={onViewableItemsChanged}
-            topRaitingMovies={topRaitingMovies}
-          />
+          <ListMovies popularMovies={popularMovies} />
 
           <S.VStack
             zIndex={-1}
-            position="absolute"
+            position="relative"
             bottom={0}
             w="100%"
             alignItems="center"
             justifyContent="flex-end"
-            height={SIZES.height / 2}
-            backgroundColor="rgba(0,0,0,0.7)"
             space={3}
           >
             <InfoMovie
-              title={focusedMovie?.title || ""}
-              genre_ids={focusedMovie?.genre_ids || []}
+              title={focusMovie?.title || ""}
+              genre_ids={focusMovie?.genre_ids || []}
             />
             <BottomTab currentPath="movie" />
           </S.VStack>
         </RenderIF>
-      </S.VStack>
+      </S.ScrollView>
     </ImageBackground>
   );
 }

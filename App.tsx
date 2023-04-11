@@ -7,7 +7,7 @@ import WrapperProvider from "./src/components/WrapperProvider";
 export default function App() {
   return (
     <WrapperProvider>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <Router />
     </WrapperProvider>
   );

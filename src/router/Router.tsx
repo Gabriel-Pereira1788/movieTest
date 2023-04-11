@@ -8,6 +8,8 @@ import Home from "../screens/private/home/View";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Explore from "../screens/private/Explore/View";
 import Favorites from "../screens/private/Favorites/View";
+import { RootParamListI } from "./navigation";
+import SingleMovie from "../screens/private/singleMovie/View";
 
 type Props = {};
 
@@ -15,7 +17,6 @@ const TransitionScreenOptions = {
   ...TransitionPresets.SlideFromRightIOS, // This is where the transition happens
 };
 
-const Stack = createStackNavigator();
 const NativeStack = createNativeStackNavigator();
 
 export function HomeNavigator() {
@@ -35,6 +36,8 @@ export function HomeNavigator() {
   );
 }
 
+const Stack = createStackNavigator<RootParamListI>();
+
 export default function Router({}: Props) {
   return (
     <NavigationContainer>
@@ -42,6 +45,14 @@ export default function Router({}: Props) {
         <Stack.Screen
           name="Home"
           component={HomeNavigator}
+          options={{
+            headerTransparent: true,
+            headerTitle: "",
+          }}
+        />
+        <Stack.Screen
+          name="SingleMovie"
+          component={SingleMovie}
           options={{
             headerTransparent: true,
             headerTitle: "",
