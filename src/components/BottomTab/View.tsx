@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "native-base";
-import { SIZES } from "../../constants/sizes";
+import { SIZES } from "../../helpers/constants/sizes";
 import { MaterialIcons, Fontisto } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
+import { FontAwesome } from "@expo/vector-icons";
 interface BottomTabProps extends S.IStackProps {
   currentPath: string;
 }
@@ -36,7 +36,12 @@ export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
       >
         <MaterialIcons name="search" size={30} color="#fff" />
       </TouchableOpacity>
-      <Fontisto name="favorite" size={25} color="#fff" />
+      <TouchableOpacity>
+        <Fontisto name="favorite" size={25} color="#fff" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
+        <FontAwesome name="user-circle-o" size={25} color="#fff" />
+      </TouchableOpacity>
     </S.HStack>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "native-base";
-import { SIZES } from "../../../../constants/sizes";
+import { SIZES } from "../../../../helpers/constants/sizes";
 type Props = {};
 
 export default function FeedbackAdd({}: Props) {

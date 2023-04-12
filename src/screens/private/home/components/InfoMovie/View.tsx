@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "native-base";
 import { ITmdb } from "../../../../../models/Itmdb";
-import { TMDB_GENRES } from "../../../../../constants/TMDB";
-import { SIZES } from "../../../../../constants/sizes";
+import { TMDB_GENRES } from "../../../../../helpers/constants/TMDB";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 import Animated, { FadeInLeft } from "react-native-reanimated";
 
 type InfoMovieProps = Pick<ITmdb, "title" | "genre_ids">;

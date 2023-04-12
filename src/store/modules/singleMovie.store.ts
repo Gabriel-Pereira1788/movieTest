@@ -1,7 +1,6 @@
 import { AnyAction, Dispatch, createSlice } from "@reduxjs/toolkit";
-
-import { MoviesAPI } from "../../services/modules/movies";
 import { ISingleMovie } from "../../models/DataMovie";
+import { MoviesAPI } from "../../repositories/services/modules/movies";
 
 interface State {
   dataMovie: ISingleMovie | null;

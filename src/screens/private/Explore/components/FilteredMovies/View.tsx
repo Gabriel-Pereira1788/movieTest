@@ -4,7 +4,7 @@ import { IDataMovie } from "../../../../../models/DataMovie";
 import { Filter } from "../../models";
 import { useFilteredMovies } from "./useFilteredMovies";
 import CardMovie from "../CardMovie/View";
-import { SIZES } from "../../../../../constants/sizes";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 
 interface FilteredMoviesProps {
   filters: Filter;

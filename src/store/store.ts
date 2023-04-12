@@ -2,11 +2,13 @@ import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import moviesReducer from "./modules/movies.store";
 import singleMovieReducer from "./modules/singleMovie.store";
+import authReducer from "./modules/auth.store";
 
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,
     singleMovie: singleMovieReducer,
+    auth: authReducer,
   },
 });
 

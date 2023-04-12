@@ -4,7 +4,7 @@ import BottomTab from "../../../components/BottomTab/View";
 import SearchBar from "./components/SearchBar/View";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useExplore } from "./useExplore";
-import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
 import Category from "../../../components/Category/View";
 import CardMovie from "./components/CardMovie/View";
 import Animated, { FadeInDown } from "react-native-reanimated";
@@ -20,7 +20,7 @@ export default function Explore({}: Props) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
       <S.VStack
-        paddingTop={20}
+        paddingTop={10}
         flex={1}
         backgroundColor="background.main"
         alignItems="center"

@@ -3,7 +3,7 @@ import * as S from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { ITmdb } from "../../../../../models/Itmdb";
 import { ISingleMovie } from "../../../../../models/DataMovie";
-import { TMBD_BACKDROP_URL } from "../../../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
 import CardCast from "../CardCast/View";
 import { FlatList } from "react-native-gesture-handler";
 

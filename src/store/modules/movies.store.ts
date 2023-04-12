@@ -1,8 +1,8 @@
 import { AnyAction, createSlice } from "@reduxjs/toolkit";
 import { Dispatch } from "react";
-import { MoviesAPI } from "../../services/modules/movies";
 import { IDataMovie } from "../../models/DataMovie";
 import { ITmdb } from "../../models/Itmdb";
+import { MoviesAPI } from "../../repositories/services/modules/movies";
 
 interface State {
   loading: boolean;

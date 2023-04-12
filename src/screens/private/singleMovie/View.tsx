@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "native-base";
 import { NavigationProps } from "../../../router/navigation";
 import { useSingleMovie } from "./useSingleMovie";
-import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
 import Animated from "react-native-reanimated";
 import Info from "./components/Info/View";
 import {
@@ -13,7 +13,7 @@ import {
 import RenderIF from "../../../components/RenderIF/View";
 import { LinearGradient } from "expo-linear-gradient";
 import Poster from "./components/Poster/View";
-import { SIZES } from "../../../constants/sizes";
+import { SIZES } from "../../../helpers/constants/sizes";
 import { MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import CardCast from "./components/CardCast/View";

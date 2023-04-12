@@ -11,6 +11,12 @@ import Favorites from "../screens/private/Favorites/View";
 import { RootParamListI } from "./navigation";
 import SingleMovie from "../screens/private/singleMovie/View";
 import AddFavorite from "../components/AddFavorite/View";
+import SignIn from "../screens/public/SignIn/View";
+import SignOut from "../screens/public/SignUp/View";
+import SignUp from "../screens/public/SignUp/View";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import MyAccount from "../screens/private/MyAccount/View";
 
 type Props = {};
 
@@ -41,9 +47,27 @@ export function HomeNavigator() {
 const Stack = createStackNavigator<RootParamListI>();
 
 export default function Router({}: Props) {
+  const { user } = useSelector((state: RootState) => state.auth);
+  console.log("user", user);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{
+            headerTransparent: true,
+            headerTitle: "",
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            headerTransparent: true,
+            headerTitle: "",
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={HomeNavigator}
@@ -60,6 +84,15 @@ export default function Router({}: Props) {
             headerTitle: "",
             headerTintColor: "#fff",
             headerRight: () => <AddFavorite />,
+          }}
+        />
+        <Stack.Screen
+          name="MyAccount"
+          component={MyAccount}
+          options={{
+            headerTransparent: true,
+            headerTitle: "",
+            headerTintColor: "#fff",
           }}
         />
       </Stack.Navigator>

@@ -8,7 +8,7 @@ import {
 //*store
 import { RootState } from "../../../../../store/store";
 //*constants
-import { SIZES } from "../../../../../constants/sizes";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 //*types
 import { ITmdb } from "../../../../../models/Itmdb";
 import { useNavigation } from "@react-navigation/native";

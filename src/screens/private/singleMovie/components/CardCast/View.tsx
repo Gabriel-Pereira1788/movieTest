@@ -2,7 +2,7 @@ import React from "react";
 import { Cast } from "../../../../../models/Itmdb";
 
 import * as S from "native-base";
-import { TMBD_BACKDROP_URL } from "../../../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import RenderIF from "../../../../../components/RenderIF/View";
 

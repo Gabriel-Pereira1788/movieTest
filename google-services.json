@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "539396640729",
+    "project_id": "moviestest-cf650",
+    "storage_bucket": "moviestest-cf650.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539396640729:android:4d81b0cd8aff3944ae13c8",
+        "android_client_info": {
+          "package_name": "com.moviesTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539396640729-s0d35tlais278blm7obn9v73tmgsc0db.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzBVnruf8vMSDEpAsKSe3KMD3gIuq1Ghc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539396640729-s0d35tlais278blm7obn9v73tmgsc0db.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

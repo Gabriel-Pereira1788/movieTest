@@ -1,7 +1,7 @@
 import React from "react";
 import { Animated, FlatList, ListRenderItem } from "react-native";
 //*constants
-import { SIZES } from "../../../../../constants/sizes";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 //*components
 import CardMovie from "../CardMovie/View";
 //*hooks

@@ -1,5 +1,5 @@
-import { TMDB_KEY } from "../../constants/TMDB";
-import { IDataMovie, ISingleMovie } from "../../models/DataMovie";
+import { TMDB_KEY } from "../../../helpers/constants/TMDB";
+import { IDataMovie, ISingleMovie } from "../../../models/DataMovie";
 import { api } from "../api";
 
 const mountURL = (route: string, media: string): string =>

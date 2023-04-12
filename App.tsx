@@ -1,18 +1,17 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { NativeBaseProvider } from "native-base";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Router from "./src/router/Router";
-import WrapperProvider from "./src/components/WrapperProvider";
 import Modal from "./src/components/Modal/View";
+import Providers from "./src/providers";
 
 export default function App() {
   return (
-    <WrapperProvider>
+    <Providers>
       <StatusBar style="light" />
       <Router />
       <Modal />
-    </WrapperProvider>
+    </Providers>
   );
 }
 

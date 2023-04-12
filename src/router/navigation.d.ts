@@ -7,6 +7,9 @@ export type RootParamListI = {
         screen: "explore" | "home" | "favorites";
       };
   SingleMovie: { id: number };
+  SignIn: undefined;
+  SignUp: undefined;
+  MyAccount: undefined;
 };
 
 export declare global {

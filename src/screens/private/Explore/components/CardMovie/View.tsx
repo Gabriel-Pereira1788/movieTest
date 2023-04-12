@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "native-base";
 import { ITmdb } from "../../../../../models/Itmdb";
-import { TMBD_BACKDROP_URL } from "../../../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";

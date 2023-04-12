@@ -6,8 +6,8 @@ import Animated from "react-native-reanimated";
 //*types
 import { ITmdb } from "../../../../../models/Itmdb";
 //*constants
-import { TMBD_BACKDROP_URL } from "../../../../../constants/TMDB";
-import { SIZES } from "../../../../../constants/sizes";
+import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 //*hooks
 import { useCardMovie } from "./useCardMovie";
 

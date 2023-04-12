@@ -2,7 +2,7 @@ import React from "react";
 import { IDataMovie } from "../../../../../models/DataMovie";
 import { Filter } from "../../models";
 import { ITmdb } from "../../../../../models/Itmdb";
-import { uniqueObjectList } from "../../../../../utils/uniqueObjectList";
+import { uniqueObjectList } from "../../../../../helpers/utils/uniqueObjectList";
 type Props = {
   dataMovies?: IDataMovie[];
   filters: Filter;

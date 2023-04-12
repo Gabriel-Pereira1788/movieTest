@@ -9,7 +9,7 @@ import InfoMovie from "./components/InfoMovie/View";
 import BottomTab from "../../../components/BottomTab/View";
 import RenderIF from "../../../components/RenderIF/View";
 //*constants
-import { TMBD_BACKDROP_URL } from "../../../constants/TMDB";
+import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
 
 export default function Home() {
   const { popularMovies, focusMovie, loading } = useHome();
