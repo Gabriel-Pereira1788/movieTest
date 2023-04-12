@@ -6,23 +6,25 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
-type Props = Pick<ITmdb, "backdrop_path" | "title" | "id">;
+type Props = Pick<ITmdb, "backdrop_path" | "title" | "id"> & {
+  w?: number;
+  h?: number;
+};
 
-export default function CardMovie({ backdrop_path, title, id }: Props) {
+export default function CardMovie({ backdrop_path, title, id, w, h }: Props) {
   const navigation = useNavigation();
   return (
     <Animated.View entering={FadeInDown.delay(200).duration(200)}>
       <TouchableOpacity
         onPress={() => navigation.navigate("SingleMovie", { id })}
       >
-        <S.VStack space={2} alignItems="center" justifyContent="center">
+        <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
           <S.Image
-            mx={5}
             source={{
               uri: `${TMBD_BACKDROP_URL}${backdrop_path}`,
             }}
-            width={200}
-            height={250}
+            width={w || 200}
+            height={h || 250}
             borderRadius="lg"
             alt="image-movie"
           />
