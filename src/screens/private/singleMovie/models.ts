@@ -12,6 +12,7 @@ export type MostView = (
 export interface SingleMovieViewModel {
   dataMovie: ISingleMovie | FavoriteDTO | null;
   loading: boolean;
+  error: boolean;
   stylesAnimation: {
     flex: 1 | 3.5;
   };

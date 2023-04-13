@@ -50,7 +50,7 @@ const Stack = createStackNavigator<RootParamListI>();
 
 export default function Router({}: Props) {
   const { user } = useSelector((state: RootState) => state.auth);
-  console.log("user", user);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
@@ -90,12 +90,6 @@ export default function Router({}: Props) {
                 headerTransparent: true,
                 headerTitle: "",
                 headerTintColor: "#fff",
-                headerRight: () => (
-                  <S.HStack space={2}>
-                    <AddFavorite />
-                    <ShareMovie />
-                  </S.HStack>
-                ),
               }}
             />
             <Stack.Screen

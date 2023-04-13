@@ -5,24 +5,35 @@ import { TouchableOpacity } from "react-native";
 import { modalRef } from "../Modal/View";
 import { useAddFavorite } from "./useAddFavorite";
 import ActionsFavorite from "../ActionsFavorite/View";
+import RenderIF from "../RenderIF/View";
 interface AddFavoriteProps {}
 
 export default function AddFavorite({}: AddFavoriteProps) {
-  const { loading, dataMovie, error, addFavorite } = useAddFavorite();
+  const { loading, dataMovie, error, isFavorite, toggleFavorite } =
+    useAddFavorite();
   function openModal() {
     modalRef.current?.show(() => (
       <ActionsFavorite
-        titleAction="Adicionar aos favoritos ?"
+        titleAction={
+          isFavorite ? "Remover dos favoritos?" : "Adicionar aos favoritos ?"
+        }
         titleItem={dataMovie?.title || ""}
         loading={loading}
-        onSubmit={addFavorite}
+        onSubmit={toggleFavorite}
       />
     ));
   }
   return (
     <TouchableOpacity onPress={openModal}>
       <S.Circle p={2} backgroundColor={"rgba(0,0,0,0.4)"} mr={2} shadow={5}>
-        <MaterialIcons name="favorite-outline" size={24} color="#fff" />
+        <RenderIF
+          condition={isFavorite}
+          AlternativeComponent={
+            <MaterialIcons name="favorite-outline" size={24} color="#fff" />
+          }
+        >
+          <MaterialIcons name="favorite" size={24} color="#fff" />
+        </RenderIF>
       </S.Circle>
     </TouchableOpacity>
   );

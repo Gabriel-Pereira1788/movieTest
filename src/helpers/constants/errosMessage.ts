@@ -5,3 +5,4 @@ export const ERRORS_FIREBASE_MESSAGE = {
   "weak-password": "Utilize uma senha maior que 6 caracteres",
 };
 
+export const ERROR_DEFAULT = "Algo deu errado tente novamente mais tarde...";

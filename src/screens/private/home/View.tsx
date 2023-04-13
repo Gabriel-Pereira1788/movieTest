@@ -10,9 +10,11 @@ import BottomTab from "../../../components/BottomTab/View";
 import RenderIF from "../../../components/RenderIF/View";
 //*constants
 import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
+import ErrorMessage from "../../../components/ErrorMessage/View";
+import { ERROR_DEFAULT } from "../../../helpers/constants/errosMessage";
 
 export default function Home() {
-  const { popularMovies, focusMovie, loading } = useHome();
+  const { popularMovies, focusMovie, loading, error } = useHome();
 
   return (
     <ImageBackground
@@ -21,7 +23,6 @@ export default function Home() {
       blurRadius={25}
     >
       <S.ScrollView
-        flex={1}
         backgroundColor="rgba(0,0,0,0.8)"
         contentContainerStyle={{
           position: "relative",
@@ -30,28 +31,34 @@ export default function Home() {
           justifyContent: "center",
         }}
       >
-        <RenderIF
-          condition={!loading && !!popularMovies}
-          AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
+        <S.VStack
+          flex={1}
+          w="100%"
+          alignItems="center"
+          justifyContent="center"
+          space={1}
         >
-          <ListMovies popularMovies={popularMovies} />
-
-          <S.VStack
-            zIndex={-1}
-            position="relative"
-            bottom={0}
-            w="100%"
-            alignItems="center"
-            justifyContent="flex-end"
-            space={3}
+          <RenderIF
+            condition={!loading && !!popularMovies && !error}
+            AlternativeComponent={
+              !!error ? (
+                <ErrorMessage message={ERROR_DEFAULT} />
+              ) : (
+                <S.Box flex={1} alignItems="center" justifyContent="center">
+                  <S.Spinner size="lg" color="orange.500" />
+                </S.Box>
+              )
+            }
           >
+            <ListMovies popularMovies={popularMovies} />
+
             <InfoMovie
               title={focusMovie?.title || ""}
               genre_ids={focusMovie?.genre_ids || []}
             />
-            <BottomTab currentPath="movie" />
-          </S.VStack>
-        </RenderIF>
+          </RenderIF>
+          <BottomTab currentPath="movie" />
+        </S.VStack>
       </S.ScrollView>
     </ImageBackground>
   );

@@ -4,11 +4,15 @@ import { useFavorites } from "./useFavorites";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "../../../components/SearchBar/View";
 import CardFavorite from "./components/CardFavorite/View";
+import BottomTab from "../../../components/BottomTab/View";
+import RenderIF from "../../../components/RenderIF/View";
+import ErrorMessage from "../../../components/ErrorMessage/View";
 
 type Props = {};
 
 export default function Favorites({}: Props) {
-  const { dataFavorites } = useFavorites();
+  const { dataFavorites, loading, searchText, handleSearchText } =
+    useFavorites();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
       <S.VStack
@@ -18,21 +22,36 @@ export default function Favorites({}: Props) {
         mt={5}
         space={5}
       >
-        <S.Box px={4}>
-          <SearchBar />
-        </S.Box>
-        <S.FlatList
-          data={dataFavorites}
-          scrollEventThrottle={16}
-          contentContainerStyle={{
-            alignItems: "center",
-            justifyContent: "flex-start",
-            paddingHorizontal: 20,
-          }}
-          keyExtractor={(item) => item.id!}
-          renderItem={({ item }) => <CardFavorite {...item} />}
-        />
+        <RenderIF
+          condition={!loading && dataFavorites.length > 0}
+          AlternativeComponent={
+            dataFavorites.length === 0 ? (
+              <ErrorMessage message="Nenhum filme adicionado..." />
+            ) : (
+              <S.Box flex={1} alignItems="center" justifyContent="center">
+                <S.Spinner size="lg" color="orange.500" />
+              </S.Box>
+            )
+          }
+        >
+          <S.Box px={4}>
+            <SearchBar value={searchText} onChangeText={handleSearchText} />
+          </S.Box>
+          <S.FlatList
+            data={dataFavorites}
+            scrollEventThrottle={16}
+            contentContainerStyle={{
+              flexGrow: 1,
+              alignItems: "center",
+              justifyContent: "flex-start",
+              paddingHorizontal: 20,
+            }}
+            keyExtractor={(item) => item.id!}
+            renderItem={({ item }) => <CardFavorite {...item} />}
+          />
+        </RenderIF>
       </S.VStack>
+      <BottomTab currentPath="favorites" />
     </SafeAreaView>
   );
 }

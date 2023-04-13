@@ -11,10 +11,12 @@ import FilteredMovies from "./components/FilteredMovies/View";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Header from "./components/Header/View";
 import SearchBar from "../../../components/SearchBar/View";
+import ErrorMessage from "../../../components/ErrorMessage/View";
+import { ERROR_DEFAULT } from "../../../helpers/constants/errosMessage";
 type Props = {};
 
 export default function Explore({}: Props) {
-  const { dataMovies, categories, loading, filters, handleFilters } =
+  const { dataMovies, categories, loading, error, filters, handleFilters } =
     useExplore();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
@@ -25,8 +27,14 @@ export default function Explore({}: Props) {
         justifyContent="center"
       >
         <RenderIF
-          condition={!loading && !!dataMovies}
-          AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
+          condition={!loading && !error && !!dataMovies}
+          AlternativeComponent={
+            error ? (
+              <ErrorMessage message={ERROR_DEFAULT} />
+            ) : (
+              <S.Spinner size="lg" color="orange.500" />
+            )
+          }
         >
           <Header />
           <S.Box p={3}>

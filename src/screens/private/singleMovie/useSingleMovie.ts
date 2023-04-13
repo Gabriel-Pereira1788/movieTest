@@ -26,7 +26,7 @@ type Props = {
 };
 
 export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
-  const { dataMovie, loading } = useSelector(
+  const { dataMovie, loading, error } = useSelector(
     (state: RootState) => state.singleMovie
   );
 
@@ -67,7 +67,7 @@ export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
 
   function toggleMostView(event: GestureEvent<PanGestureHandlerEventPayload>) {
     const translationY = event.nativeEvent.translationY;
-    console.log(translationY);
+
     if (translationY > 50) {
       valueAnimated.value = " middle";
     } else {
@@ -76,11 +76,10 @@ export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
   }
 
   React.useEffect(() => {
-    if (type === "favorite") {
-      dispatch(getAsyncFavoriteByMovieId(id));
-    } else {
-      dispatch(getAsyncSingleMovie(id));
-    }
+    dispatch(getAsyncFavoriteByMovieId(id));
+
+    dispatch(getAsyncSingleMovie(id));
+
     navigation.addListener("blur", () => {
       dispatch(cleanUp());
       dispatch(cleanUpFavorites());
@@ -89,7 +88,8 @@ export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
 
   return {
     dataMovie: favoriteData || dataMovie,
-    loading: loading || actionLoading,
+    error: !favoriteData && !!error !== false,
+    loading: loading,
     stylesAnimation,
     styleRotate,
     toggleMostView,

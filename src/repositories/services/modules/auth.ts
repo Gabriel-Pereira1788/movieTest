@@ -1,8 +1,6 @@
 import { User } from "../../../models/User";
 
-async function setUser(dataUser: User) {
-  console.log(dataUser);
-}
+async function setUser(dataUser: User) {}
 
 async function persistUser() {
   return {};

@@ -6,7 +6,6 @@ export class FavoritesController implements ControlerImpl {
   useCases: FavoritesUseCase = new FavoritesUseCase();
 
   async getById(id: string | number): Promise<FavoriteData | null> {
-    console.log("get-favorite");
     const data = await this.useCases.getById(id);
 
     if (!!data) {
@@ -43,7 +42,6 @@ export class FavoritesController implements ControlerImpl {
     }));
   }
   async create(data: FavoriteData): Promise<FavoriteData> {
-    console.log("favorite-data", data.title);
     const dataCreated = await this.useCases.create(data);
 
     return {

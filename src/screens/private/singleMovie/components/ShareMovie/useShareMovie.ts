@@ -1,9 +1,10 @@
 import Share from "react-native-share";
-import { PATHS_NAME_ANDROID } from "../../helpers/constants/pathsName";
 import { KeysApps } from "./models";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { alertRef } from "../Alert/View";
+import { RootState } from "../../../../../store/store";
+import { PATHS_NAME_ANDROID } from "../../../../../helpers/constants/pathsName";
+import { alertRef } from "../../../../../components/Alert/View";
+
 //*constants
 
 export function useShareMovie() {

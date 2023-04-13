@@ -29,24 +29,16 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     setActionLoading(state: State, action) {
-      if (action.payload) {
-        state.status = "";
-      }
       state.actionLoading = action.payload;
     },
     setLoading(state: State, action) {
-      if (action.payload) {
-        state.status = "";
-      }
       state.loading = action.payload;
     },
     getFavorites(state: State, action) {
       state.dataFavorites = action.payload;
-      state.status = "success";
     },
     getSingleFavorite(state: State, action) {
       state.favoriteData = action.payload;
-      state.status = "success";
     },
     setError(state: State, action) {
       state.error = action.payload;
@@ -56,7 +48,14 @@ export const favoritesSlice = createSlice({
       state.status = action.payload;
     },
     cleanUpFavorites(state: State) {
-      state = initialState;
+      return {
+        actionLoading: false,
+        dataFavorites: [],
+        error: null,
+        favoriteData: null,
+        loading: false,
+        status: "",
+      };
     },
   },
 });
@@ -89,17 +88,20 @@ export function getAsyncFavorites() {
 
 export function addToFavorite(dataMovie: ISingleMovie) {
   return async function Handler(dispatch: Dispatch<AnyAction>) {
-    dispatch(setLoading(true));
+    dispatch(setActionLoading(true));
     try {
       const data = new FavoriteData(dataMovie);
-      console.log("favoriteModel", data);
-      await favoritesController.create(data);
+
+      const dataFavorite = await favoritesController.create(data);
+      dispatch(getSingleFavorite(dataFavorite));
       dispatch(setStatus("success"));
     } catch (error) {
       console.log(error);
       dispatch(setError(error));
+      dispatch(setStatus("error"));
     } finally {
-      dispatch(setLoading(false));
+      dispatch(setActionLoading(false));
+      dispatch(setStatus(""));
     }
   };
 }
@@ -109,12 +111,15 @@ export function removeToFavorite(id: string) {
     dispatch(setActionLoading(true));
     try {
       await favoritesController.delete(id);
+      dispatch(getSingleFavorite(null));
       dispatch(setStatus("success"));
     } catch (error) {
       console.log(error);
       dispatch(setError(error));
+      dispatch(setStatus("error"));
     } finally {
       dispatch(setActionLoading(false));
+      dispatch(setStatus(""));
     }
   };
 }
@@ -126,7 +131,7 @@ export function getAsyncFavoriteByMovieId(movieId: number) {
       const data = await favoritesController.getById(movieId);
       dispatch(getSingleFavorite(data));
     } catch (error) {
-      console.log(error);
+      console.log("async-favorite-movie", error);
       dispatch(setError(error));
     } finally {
       dispatch(setActionLoading(false));

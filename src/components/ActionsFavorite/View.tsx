@@ -14,12 +14,17 @@ interface ActionsFavoriteProps {
 export default function ActionsFavorite({
   titleAction,
   titleItem,
-  loading,
   onSubmit,
 }: ActionsFavoriteProps) {
+  const [loading, setLoading] = React.useState(false);
+  async function overrideOnSubmit() {
+    setLoading(true);
+    await onSubmit();
+    setLoading(false);
+  }
+
   return (
     <>
-      <Alert />
       <S.Modal.Content
         backgroundColor="rgba(15, 15, 22, 0.95)"
         p={5}
@@ -39,7 +44,7 @@ export default function ActionsFavorite({
             {titleAction}
           </S.Text>
 
-          <Button isLoading={loading} onPress={onSubmit}>
+          <Button isLoading={loading} onPress={overrideOnSubmit}>
             Confirmar
           </Button>
         </S.VStack>

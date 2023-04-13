@@ -7,7 +7,7 @@ import { ExploreViewModel, Filter } from "./models";
 import { TMDB_GENRES } from "../../../helpers/constants/TMDB";
 
 export function useExplore(): ExploreViewModel {
-  const { dataMovies, loading } = useSelector(
+  const { dataMovies, loading, error } = useSelector(
     (state: RootState) => state.movies
   );
   const navigation = useNavigation();
@@ -17,8 +17,6 @@ export function useExplore(): ExploreViewModel {
     name: "",
     category: "all",
   });
-
-  console.log(filters.category);
 
   const categories = TMDB_GENRES.filter((genre) => !!genre.identify);
 
@@ -39,6 +37,7 @@ export function useExplore(): ExploreViewModel {
     categories: [{ name: "Todos", identify: "all" }, ...categories],
     loading,
     filters,
+    error,
     handleFilters,
   };
 }

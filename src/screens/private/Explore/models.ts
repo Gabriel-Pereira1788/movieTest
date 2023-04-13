@@ -8,6 +8,7 @@ export interface Filter {
 
 export interface ExploreViewModel {
   dataMovies: IDataMovie[];
+  error: any;
   categories: Genre[];
   loading: boolean;
   filters: Filter;

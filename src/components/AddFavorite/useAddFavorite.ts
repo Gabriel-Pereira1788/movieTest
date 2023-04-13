@@ -1,11 +1,11 @@
 import React from "react";
-import { FavoritesController } from "../../repositories/database/useCases/Favorites/FavoritesController";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store/store";
-import { FavoriteData } from "../../repositories/database/models/FavoriteModel";
+
 import {
   addToFavorite,
   getAsyncFavoriteByMovieId,
+  removeToFavorite,
 } from "../../store/modules/favorites.store";
 import { alertRef } from "../Alert/View";
 import { STATUS_MESSAGES_FAVORITES } from "../../helpers/constants/statusMessages";
@@ -19,9 +19,17 @@ export function useAddFavorite() {
     (state: RootState) => state.singleMovie
   );
   const dispatch = useAppDispatch();
-  function addFavorite() {
-    if (!!dataMovie && !loadingDatamovie) {
+
+  const isFavorite = false;
+  function toggleFavorite() {
+    if (!!dataMovie && !loadingDatamovie && !isFavorite) {
       dispatch(addToFavorite(dataMovie));
+      dispatch(getAsyncFavoriteByMovieId(dataMovie.id));
+    }
+
+    if (!!dataMovie && !loadingDatamovie && isFavorite) {
+      dispatch(removeToFavorite(favoriteData!.id!));
+      dispatch(getAsyncFavoriteByMovieId(dataMovie.id));
     }
   }
 
@@ -35,18 +43,13 @@ export function useAddFavorite() {
     }
   }, [status]);
 
-  /*   React.useEffect(() => {
-    if (dataMovie && dataMovie.data) {
-      dispatch(getAsyncFavoriteByMovieId(dataMovie.data.id));
-    }
-  }, [dataMovie]); */
-
   return {
     dataMovie,
     loading,
     error,
     status,
-    addFavorite,
+    isFavorite,
+    toggleFavorite,
   };
 }
 

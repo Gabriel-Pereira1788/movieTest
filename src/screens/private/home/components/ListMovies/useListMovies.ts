@@ -21,7 +21,6 @@ export function useListMovies(): ListMoviesViewModel {
     }) => {
       const movieFocused =
         viewableItems.length > 0 ? viewableItems[0].item : null;
-      console.log(viewableItems.length);
 
       dispatch(setFocusMovie(movieFocused));
     },

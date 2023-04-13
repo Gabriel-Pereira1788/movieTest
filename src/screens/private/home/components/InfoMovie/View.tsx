@@ -12,12 +12,10 @@ export default function InfoMovie({ title, genre_ids }: InfoMovieProps) {
   return (
     <S.VStack
       w="100%"
-      flex={1}
       alignItems="center"
       justifyContent="flex-end"
       space={3}
       px={3}
-      mt={5}
     >
       <Animated.View
         key={title}

@@ -32,8 +32,6 @@ export function useMyAccount() {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled && result.assets.length > 0) {
       const assets = result.assets;
       dataForm.setformData((prev) => ({ ...prev, photoURL: assets[0].uri }));

@@ -24,7 +24,11 @@ export const authSlice = createSlice({
       state.user = action.payload;
     },
     cleanUpAuth(state: State) {
-      state = initialState;
+      return {
+        loading: false,
+        user: null,
+        error: null,
+      };
     },
   },
 });

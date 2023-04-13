@@ -11,11 +11,26 @@ export function useFavorites() {
   const { dataFavorites, loading, error } = useSelector(
     (state: RootState) => state.favorites
   );
+  const [searchText, setSearchText] = React.useState("");
+
+  function handleSearchText(value: string) {
+    setSearchText(value);
+  }
+
+  const displayDataFavorites = React.useMemo(() => {
+    let filteredFavorites = dataFavorites;
+
+    if (searchText !== "") {
+      filteredFavorites = dataFavorites.filter((favorite) =>
+        favorite.title?.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
+
+    return filteredFavorites;
+  }, [searchText, dataFavorites]);
 
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
-
-  console.log(dataFavorites.length > 0 ? dataFavorites[0].cast : null);
 
   React.useEffect(() => {
     navigation.addListener("focus", () => {
@@ -27,9 +42,11 @@ export function useFavorites() {
   }, []);
 
   return {
-    dataFavorites,
+    dataFavorites: displayDataFavorites,
     loading,
     error,
+    searchText,
+    handleSearchText,
   };
 }
 

@@ -5,10 +5,12 @@ import { MoviesAPI } from "../../repositories/services/modules/movies";
 interface State {
   dataMovie: ISingleMovie | null;
   loading: boolean;
+  error: any;
 }
 
 const initialState: State = {
   dataMovie: null,
+  error: null,
   loading: false,
 };
 
@@ -19,16 +21,25 @@ export const singleMovie = createSlice({
     setLoading(state: State, action) {
       state.loading = action.payload;
     },
+    setError(state: State, action) {
+      state.error = action.payload;
+    },
     getSingleMovie(state: State, action) {
       state.dataMovie = action.payload;
+      state.error = null;
     },
     cleanUp(state: State) {
-      state = initialState;
+      return {
+        dataMovie: null,
+        error: null,
+        loading: false,
+      };
     },
   },
 });
 
-export const { setLoading, getSingleMovie, cleanUp } = singleMovie.actions;
+export const { setLoading, getSingleMovie, cleanUp, setError } =
+  singleMovie.actions;
 
 export default singleMovie.reducer;
 
@@ -40,7 +51,8 @@ export function getAsyncSingleMovie(id: number) {
 
       return dispatch(getSingleMovie(dataMovie));
     } catch (error) {
-      console.log(error);
+      console.log("single-movie-error", error);
+      dispatch(setError(error));
     } finally {
       dispatch(setLoading(false));
     }

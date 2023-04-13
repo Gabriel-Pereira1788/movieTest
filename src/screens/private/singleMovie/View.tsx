@@ -12,12 +12,24 @@ import Poster from "./components/Poster/View";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import ListCast from "./components/ListCast/View";
+import AddFavorite from "./components/AddFavorite/View";
+import ShareMovie from "./components/ShareMovie/View";
+import { SIZES } from "../../../helpers/constants/sizes";
+import Alert from "../../../components/Alert/View";
+import ErrorMessage from "../../../components/ErrorMessage/View";
+import { ERROR_DEFAULT } from "../../../helpers/constants/errosMessage";
 
 export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
   const { id, type } = route.params;
 
-  const { dataMovie, stylesAnimation, styleRotate, loading, toggleMostView } =
-    useSingleMovie({ id, type });
+  const {
+    dataMovie,
+    stylesAnimation,
+    styleRotate,
+    loading,
+    error,
+    toggleMostView,
+  } = useSingleMovie({ id, type });
 
   return (
     <S.VStack
@@ -25,9 +37,34 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
       justifyContent="center"
       backgroundColor="background.main"
     >
+      <RenderIF condition={!error}>
+        <S.HStack
+          w={SIZES.width}
+          px={3}
+          zIndex={2}
+          position="absolute"
+          alignItems="center"
+          justifyContent="flex-end"
+          top={8}
+          right={0}
+        >
+          <Alert />
+          <S.HStack space={2}>
+            <AddFavorite type={type} />
+            <ShareMovie />
+          </S.HStack>
+        </S.HStack>
+      </RenderIF>
+
       <RenderIF
-        condition={!loading && !!dataMovie}
-        AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
+        condition={!loading && !error}
+        AlternativeComponent={
+          !loading && error ? (
+            <ErrorMessage message={ERROR_DEFAULT} />
+          ) : (
+            <S.Spinner size="lg" color="orange.500" />
+          )
+        }
       >
         {dataMovie && dataMovie.poster_path && (
           <Poster

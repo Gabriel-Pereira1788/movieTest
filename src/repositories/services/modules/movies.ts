@@ -12,7 +12,6 @@ async function fetchData(url: string) {
 }
 
 async function getMoviesByGenre(genre: GenreIdentify) {
-  console.log("async function");
   if (genre === "top" || genre === "popular") {
     return await fetchData(
       `/movie/${genre}?api_key=${TMDB_KEY}&language=pt-BR&page=1`
@@ -42,7 +41,6 @@ async function getMovieById(id: number): Promise<ISingleMovie> {
 }
 
 async function getMoviesList(): Promise<IDataMovie[]> {
-  console.log("get");
   return [
     {
       identify: "popular",

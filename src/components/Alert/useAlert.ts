@@ -20,6 +20,7 @@ export function useAlert({ alertRef }: HookAlertProps): AlertViewModel {
     setAlertConfig({
       text: "",
       isOpen: false,
+      status: undefined,
     });
   }
 
@@ -30,10 +31,12 @@ export function useAlert({ alertRef }: HookAlertProps): AlertViewModel {
   }));
 
   React.useEffect(() => {
-    setTimeout(() => {
-      hide();
-    }, 3000);
-  }, []);
+    if (alertConfig.isOpen) {
+      setTimeout(() => {
+        hide();
+      }, 3000);
+    }
+  }, [alertConfig]);
 
   return { alertConfig, open, hide };
 }

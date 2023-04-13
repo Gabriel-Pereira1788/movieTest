@@ -14,29 +14,27 @@ export default function Alert({}: Props) {
 
   return (
     <RenderIF condition={alertConfig.isOpen}>
-      <TouchableWithoutFeedback onPress={hide}>
-        <Animated.View
-          testID="alert"
-          entering={FadeInUp.delay(150).duration(200)}
-          style={styles.animatedStyle}
-        >
-          <S.Alert status={alertConfig.status}>
-            <S.HStack
-              flexShrink={1}
-              space={2}
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <S.HStack flexShrink={1} space={2} alignItems="center" px={3}>
-                <S.Alert.Icon testID="icon-status" />
-                <S.Text fontSize="md" fontWeight="medium" color="coolGray.800">
-                  {alertConfig.text}
-                </S.Text>
-              </S.HStack>
+      <Animated.View
+        testID="alert"
+        entering={FadeInUp.delay(150).duration(200)}
+        style={styles.animatedStyle}
+      >
+        <S.Alert status={alertConfig.status}>
+          <S.HStack
+            flexShrink={1}
+            space={2}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <S.HStack flexShrink={1} space={2} alignItems="center" px={3}>
+              <S.Alert.Icon testID="icon-status" />
+              <S.Text fontSize="md" fontWeight="medium" color="coolGray.800">
+                {alertConfig.text}
+              </S.Text>
             </S.HStack>
-          </S.Alert>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+          </S.HStack>
+        </S.Alert>
+      </Animated.View>
     </RenderIF>
   );
 }
