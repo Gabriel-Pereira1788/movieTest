@@ -13,8 +13,6 @@ export function useHome(): HomeViewModel {
   );
   const dispatch = useAppDispatch();
 
-  console.log(dataMoviesGenre);
-
   React.useEffect(() => {
     dispatch(getAsyncMovies("popular"));
   }, []);

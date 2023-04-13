@@ -5,27 +5,20 @@ import { useSingleMovie } from "./useSingleMovie";
 import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
 import Animated from "react-native-reanimated";
 import Info from "./components/Info/View";
-import {
-  FlatList,
-  PanGestureHandler,
-  ScrollView,
-} from "react-native-gesture-handler";
+import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import RenderIF from "../../../components/RenderIF/View";
-import { LinearGradient } from "expo-linear-gradient";
 import Poster from "./components/Poster/View";
-import { SIZES } from "../../../helpers/constants/sizes";
+
 import { MaterialIcons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
-import CardCast from "./components/CardCast/View";
+
 import ListCast from "./components/ListCast/View";
 
 export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
-  const { id } = route.params;
+  const { id, type } = route.params;
 
   const { dataMovie, stylesAnimation, styleRotate, loading, toggleMostView } =
-    useSingleMovie({ id });
+    useSingleMovie({ id, type });
 
-  console.log(dataMovie?.data);
   return (
     <S.VStack
       flex={1}
@@ -33,13 +26,13 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
       backgroundColor="background.main"
     >
       <RenderIF
-        condition={!loading && !!dataMovie && !!dataMovie.data}
+        condition={!loading && !!dataMovie}
         AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
       >
-        {dataMovie?.data && dataMovie?.data.poster_path && (
+        {dataMovie && dataMovie.poster_path && (
           <Poster
             toggleMostView={toggleMostView}
-            imagePath={`${TMBD_BACKDROP_URL}${dataMovie.data.poster_path}`}
+            imagePath={`${TMBD_BACKDROP_URL}${dataMovie.poster_path}`}
           />
         )}
         <PanGestureHandler
@@ -81,14 +74,4 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
     </S.VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-  },
-});
 

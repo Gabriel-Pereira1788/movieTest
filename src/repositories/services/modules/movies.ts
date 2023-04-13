@@ -36,7 +36,7 @@ async function getMovieById(id: number): Promise<ISingleMovie> {
     api.get(dataCreditsUrl),
   ]);
   return {
-    data: dataMovie,
+    ...dataMovie,
     cast: dataCredits.cast,
   };
 }

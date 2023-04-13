@@ -1,18 +1,16 @@
 import React from "react";
 import * as S from "native-base";
 import BottomTab from "../../../components/BottomTab/View";
-import SearchBar from "./components/SearchBar/View";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useExplore } from "./useExplore";
-import { TMBD_BACKDROP_URL } from "../../../helpers/constants/TMDB";
+
 import Category from "../../../components/Category/View";
-import CardMovie from "./components/CardMovie/View";
-import Animated, { FadeInDown } from "react-native-reanimated";
 import RenderIF from "../../../components/RenderIF/View";
 import AllMovies from "./components/AllMovies/View";
 import FilteredMovies from "./components/FilteredMovies/View";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Header from "./components/Header/View";
+import SearchBar from "../../../components/SearchBar/View";
 type Props = {};
 
 export default function Explore({}: Props) {

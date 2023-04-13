@@ -16,7 +16,9 @@ export default function CardMovie({ backdrop_path, title, id, w, h }: Props) {
   return (
     <Animated.View entering={FadeInDown.delay(200).duration(200)}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("SingleMovie", { id })}
+        onPress={() =>
+          navigation.navigate("SingleMovie", { id, type: "movie" })
+        }
       >
         <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
           <S.Image

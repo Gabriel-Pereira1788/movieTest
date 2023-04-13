@@ -50,7 +50,9 @@ export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
         </TabWrapper>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Home", { screen: "favorites" })}
+      >
         <TabWrapper
           isCurrentPath={currentPath === "favorites"}
           screenTitle="Favoritos"

@@ -15,14 +15,23 @@ import {
 import { SingleMovieViewModel } from "./models";
 import { useNavigation } from "@react-navigation/native";
 import { cleanUp } from "../../../store/modules/movies.store";
+import {
+  cleanUpFavorites,
+  getAsyncFavoriteByMovieId,
+} from "../../../store/modules/favorites.store";
 
 type Props = {
   id: number;
+  type: "favorite" | "movie";
 };
 
-export function useSingleMovie({ id }: Props): SingleMovieViewModel {
+export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
   const { dataMovie, loading } = useSelector(
     (state: RootState) => state.singleMovie
+  );
+
+  const { favoriteData, actionLoading } = useSelector(
+    (state: RootState) => state.favorites
   );
 
   const navigation = useNavigation();
@@ -67,14 +76,23 @@ export function useSingleMovie({ id }: Props): SingleMovieViewModel {
   }
 
   React.useEffect(() => {
-    navigation.addListener("focus", () => {
+    if (type === "favorite") {
+      dispatch(getAsyncFavoriteByMovieId(id));
+    } else {
       dispatch(getAsyncSingleMovie(id));
-    });
+    }
     navigation.addListener("blur", () => {
       dispatch(cleanUp());
+      dispatch(cleanUpFavorites());
     });
-  }, []);
+  }, [type]);
 
-  return { dataMovie, loading, stylesAnimation, styleRotate, toggleMostView };
+  return {
+    dataMovie: favoriteData || dataMovie,
+    loading: loading || actionLoading,
+    stylesAnimation,
+    styleRotate,
+    toggleMostView,
+  };
 }
 

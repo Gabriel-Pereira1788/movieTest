@@ -6,7 +6,7 @@ export type RootParamListI = {
     | {
         screen: "explore" | "home" | "favorites";
       };
-  SingleMovie: { id: number };
+  SingleMovie: { id: number; type: "favorite" | "movie" };
   SignIn: undefined;
   SignUp: undefined;
   MyAccount: undefined;

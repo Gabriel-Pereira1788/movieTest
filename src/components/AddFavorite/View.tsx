@@ -3,12 +3,21 @@ import * as S from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { modalRef } from "../Modal/View";
-import FeedbackAdd from "./components/FeedbackAdd/View";
+import { useAddFavorite } from "./useAddFavorite";
+import ActionsFavorite from "../ActionsFavorite/View";
 interface AddFavoriteProps {}
 
 export default function AddFavorite({}: AddFavoriteProps) {
+  const { loading, dataMovie, error, addFavorite } = useAddFavorite();
   function openModal() {
-    modalRef.current?.show(() => <FeedbackAdd />);
+    modalRef.current?.show(() => (
+      <ActionsFavorite
+        titleAction="Adicionar aos favoritos ?"
+        titleItem={dataMovie?.title || ""}
+        loading={loading}
+        onSubmit={addFavorite}
+      />
+    ));
   }
   return (
     <TouchableOpacity onPress={openModal}>

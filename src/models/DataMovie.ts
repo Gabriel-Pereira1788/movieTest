@@ -11,8 +11,7 @@ export interface IDataMovie {
   list: ITmdb[];
 }
 
-export interface ISingleMovie {
-  data: ITmdb;
+export interface ISingleMovie extends ITmdb {
   cast: Cast[];
 }
 

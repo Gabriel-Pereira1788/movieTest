@@ -30,7 +30,7 @@ export function useCardMovie({ id }: Props) {
   });
 
   function redirectScreen() {
-    navigation.navigate("SingleMovie", { id });
+    navigation.navigate("SingleMovie", { id, type: "movie" });
   }
   React.useEffect(() => {
     if (focusMovie?.id === id) {

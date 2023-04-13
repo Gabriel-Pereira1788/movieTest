@@ -3,12 +3,14 @@ import { useDispatch } from "react-redux";
 import moviesReducer from "./modules/movies.store";
 import singleMovieReducer from "./modules/singleMovie.store";
 import authReducer from "./modules/auth.store";
+import favoritesReducer from "./modules/favorites.store";
 
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,
     singleMovie: singleMovieReducer,
     auth: authReducer,
+    favorites: favoritesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

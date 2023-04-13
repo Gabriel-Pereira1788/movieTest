@@ -4,12 +4,14 @@ interface CategorieProps extends S.IBoxProps {
   text: string;
   identify?: string;
   currentCategory?: string;
+  textProps?: S.ITextProps;
 }
 
 export default function Category({
   text,
   currentCategory,
   identify,
+  textProps,
   ...rest
 }: CategorieProps) {
   return (
@@ -18,14 +20,17 @@ export default function Category({
       shadow={5}
       px={3}
       py={1}
-      backgroundColor={currentCategory === identify ? "#ffffffef" : "#1e1e2c"}
+      backgroundColor={
+        currentCategory === identify ? "#ffffffef" : "blueDark.primary"
+      }
       borderRadius="2xl"
       {...rest}
     >
       <S.Text
         fontWeight={500}
-        color={currentCategory === identify ? "#1e1e2c" : "#ffffffc3"}
+        color={currentCategory === identify ? "blueDark.primary" : "#ffffffc3"}
         fontSize="md"
+        {...textProps}
       >
         {text}
       </S.Text>

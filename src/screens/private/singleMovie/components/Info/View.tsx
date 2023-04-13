@@ -3,19 +3,15 @@ import * as S from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { ITmdb } from "../../../../../models/Itmdb";
 import { ISingleMovie } from "../../../../../models/DataMovie";
-import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
-import CardCast from "../CardCast/View";
-import { FlatList } from "react-native-gesture-handler";
+import { FavoriteData } from "../../../../../repositories/database/models/FavoriteModel";
 
-type InfoProps = Pick<
-  ITmdb,
-  "title" | "vote_average" | "vote_count" | "genres" | "overview"
->;
-
-interface InfoProops {}
-
-export default function Info({ data, cast }: ISingleMovie) {
-  const { title, vote_average, vote_count, genres, overview } = data;
+export default function Info({
+  title,
+  vote_average,
+  vote_count,
+  genres,
+  overview,
+}: ISingleMovie | FavoriteData) {
   return (
     <S.VStack py={3} width="100%" overflow="hidden">
       <S.VStack padding={5} space={3}>
