@@ -32,7 +32,7 @@ export default function Home() {
       >
         <RenderIF
           condition={!loading && !!popularMovies}
-          AlternativeComponent={<S.Spinner size="lg" color="red.600" />}
+          AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
         >
           <ListMovies popularMovies={popularMovies} />
 

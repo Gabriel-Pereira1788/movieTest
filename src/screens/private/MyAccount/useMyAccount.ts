@@ -5,8 +5,10 @@ import { useFormAuth } from "../../../helpers/hooks/useFormAuth";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamListI } from "../../../router/navigation";
 import * as ImagePicker from "expo-image-picker";
+import { useAuth } from "../../../helpers/hooks/useAuth";
 export function useMyAccount() {
   const { user } = useSelector((state: RootState) => state.auth);
+  const { signOut } = useAuth();
 
   const dataForm = useFormAuth({
     fields: {
@@ -18,12 +20,11 @@ export function useMyAccount() {
     successMessage: "Usuário editado com sucesso!",
   });
 
-  async function signOut() {
-    console.log("sair");
+  async function handleSignOut() {
+    await signOut();
   }
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -33,16 +34,16 @@ export function useMyAccount() {
 
     console.log(result);
 
-    if (!result.canceled) {
-      //*tratar get de imagem e setar no firebase
-      /*      dataForm.setformData((prev) => ({...prev,photoURL}))
-      handle(result.assets[0].uri); */
+    if (!result.canceled && result.assets.length > 0) {
+      const assets = result.assets;
+      dataForm.setformData((prev) => ({ ...prev, photoURL: assets[0].uri }));
     }
   };
 
   return {
     ...dataForm,
-    signOut,
+    handleSignOut,
+    pickImage,
   };
 }
 

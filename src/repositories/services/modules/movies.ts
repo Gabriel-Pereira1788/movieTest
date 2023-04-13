@@ -1,4 +1,4 @@
-import { TMDB_KEY } from "../../../helpers/constants/TMDB";
+import { TMDB_GENRES, TMDB_KEY } from "../../../helpers/constants/TMDB";
 import { IDataMovie, ISingleMovie } from "../../../models/DataMovie";
 import { api } from "../api";
 
@@ -11,10 +11,17 @@ async function fetchData(url: string) {
   return data.results;
 }
 
-async function getMoviesByCategory(category: string) {
-  return await fetchData(
-    `/movie/${category}?api_key=${TMDB_KEY}&language=pt-BR&page=1`
+async function getMoviesByGenre(genre: GenreIdentify) {
+  console.log("async function");
+  if (genre === "top" || genre === "popular") {
+    return await fetchData(
+      `/movie/${genre}?api_key=${TMDB_KEY}&language=pt-BR&page=1`
+    );
+  }
+  const getIdentify = TMDB_GENRES.find(
+    (dataGenre) => dataGenre.identify === genre
   );
+  return await fetchData(mountURL(`with_genres=${getIdentify?.id}`, "movie"));
 }
 
 async function getMovieById(id: number): Promise<ISingleMovie> {
@@ -81,7 +88,7 @@ async function getMoviesList(): Promise<IDataMovie[]> {
 
 export const MoviesAPI = {
   getMoviesList,
-  getMoviesByCategory,
+  getMoviesByGenre,
   getMovieById,
 };
 

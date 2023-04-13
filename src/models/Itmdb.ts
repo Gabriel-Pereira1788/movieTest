@@ -1,6 +1,7 @@
 export interface Genre {
-  id: number;
+  id?: number;
   name: string;
+  identify?: GenreIdentify;
 }
 export interface ITmdb {
   backdrop_path: string;
@@ -15,6 +16,8 @@ export interface ITmdb {
   vote_count: number;
   genre_ids: number[];
   genres?: Genre[];
+  homepage?: string;
+  imdb_id: string;
 }
 
 export interface Cast {

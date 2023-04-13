@@ -1,16 +1,14 @@
 import { IDataMovie } from "../../../models/DataMovie";
+import { Genre } from "../../../models/Itmdb";
 
 export interface Filter {
   name?: string;
-  category?: string;
+  category?: GenreIdentify;
 }
 
 export interface ExploreViewModel {
   dataMovies: IDataMovie[];
-  categories: {
-    title: string;
-    identify: string;
-  }[];
+  categories: Genre[];
   loading: boolean;
   filters: Filter;
   handleFilters: (filter: Filter) => void;

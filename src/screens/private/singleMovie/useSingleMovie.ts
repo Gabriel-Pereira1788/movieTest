@@ -13,6 +13,8 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import { SingleMovieViewModel } from "./models";
+import { useNavigation } from "@react-navigation/native";
+import { cleanUp } from "../../../store/modules/movies.store";
 
 type Props = {
   id: number;
@@ -22,6 +24,8 @@ export function useSingleMovie({ id }: Props): SingleMovieViewModel {
   const { dataMovie, loading } = useSelector(
     (state: RootState) => state.singleMovie
   );
+
+  const navigation = useNavigation();
 
   const valueAnimated = useSharedValue("middle");
 
@@ -63,7 +67,12 @@ export function useSingleMovie({ id }: Props): SingleMovieViewModel {
   }
 
   React.useEffect(() => {
-    dispatch(getAsyncSingleMovie(id));
+    navigation.addListener("focus", () => {
+      dispatch(getAsyncSingleMovie(id));
+    });
+    navigation.addListener("blur", () => {
+      dispatch(cleanUp());
+    });
   }, []);
 
   return { dataMovie, loading, stylesAnimation, styleRotate, toggleMostView };

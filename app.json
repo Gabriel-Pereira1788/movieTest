@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "moviesTest",
-    "slug": "moviesTest",
+    "name": "moviestest",
+    "slug": "moviestest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,14 +14,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.moviesTest"
+      "bundleIdentifier": "com.moviestest"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.moviesTest"
+      "package": "com.moviestest"
     },
     "plugins": [
       [
@@ -29,7 +29,8 @@
         {
           "photosPermission": "Permitir acesso a fotos?."
         }
-      ]
+      ],
+      "@react-native-firebase/app"
     ],
     "web": {
       "favicon": "./assets/favicon.png"

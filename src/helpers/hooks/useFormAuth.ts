@@ -27,7 +27,7 @@ export function useFormAuth<T extends keyof RootParamListI>({
 
   const [errors, setErrors] = React.useState<Errors | null>(null);
 
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, edit } = useAuth();
 
   function handleFormData(key: keyof AuthDTO, value: string) {
     setformData((prev) => ({ ...prev, [key]: value }));
@@ -38,6 +38,7 @@ export function useFormAuth<T extends keyof RootParamListI>({
 
   async function submit() {
     if (typeSubmit === "edit") {
+      await edit(formData);
       return;
     }
     if (typeSubmit === "signUp") {

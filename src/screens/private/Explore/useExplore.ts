@@ -4,6 +4,7 @@ import React from "react";
 import { cleanUp, getAsyncMovies } from "../../../store/modules/movies.store";
 import { useNavigation } from "@react-navigation/native";
 import { ExploreViewModel, Filter } from "./models";
+import { TMDB_GENRES } from "../../../helpers/constants/TMDB";
 
 export function useExplore(): ExploreViewModel {
   const { dataMovies, loading } = useSelector(
@@ -14,34 +15,28 @@ export function useExplore(): ExploreViewModel {
 
   const [filters, setFilters] = React.useState<Filter>({
     name: "",
-    category: "popular",
+    category: "all",
   });
 
-  const categories =
-    dataMovies.length > 0
-      ? dataMovies.map(({ title, identify }) => ({
-          title,
-          identify,
-        }))
-      : [];
+  console.log(filters.category);
+
+  const categories = TMDB_GENRES.filter((genre) => !!genre.identify);
 
   function handleFilters(filter: Filter) {
     setFilters((prev) => ({ ...prev, ...filter }));
   }
 
   React.useEffect(() => {
-    navigation.addListener("focus", () => {
-      console.log("geted");
-      dispatch(getAsyncMovies());
-    });
+    dispatch(getAsyncMovies(filters.category!));
+
     navigation.addListener("blur", () => {
       dispatch(cleanUp());
     });
-  }, []);
+  }, [filters.category]);
 
   return {
     dataMovies,
-    categories: [{ title: "Todos", identify: "all" }, ...categories],
+    categories: [{ name: "Todos", identify: "all" }, ...categories],
     loading,
     filters,
     handleFilters,

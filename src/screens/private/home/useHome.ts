@@ -2,30 +2,32 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../store/store";
 import {
-  getAsyncPopularMovies,
+  getAsyncMovies,
   setFocusMovie,
 } from "../../../store/modules/movies.store";
 import { HomeViewModel } from "./models";
 
 export function useHome(): HomeViewModel {
-  const { popularMovies, focusMovie, loading } = useSelector(
+  const { dataMoviesGenre, focusMovie, loading } = useSelector(
     (state: RootState) => state.movies
   );
   const dispatch = useAppDispatch();
 
+  console.log(dataMoviesGenre);
+
   React.useEffect(() => {
-    dispatch(getAsyncPopularMovies());
+    dispatch(getAsyncMovies("popular"));
   }, []);
 
   React.useEffect(() => {
-    if (!!popularMovies) {
-      const defaultSelected = popularMovies[0];
+    if (!!dataMoviesGenre) {
+      const defaultSelected = dataMoviesGenre[0];
       dispatch(setFocusMovie(defaultSelected));
     }
-  }, [popularMovies]);
+  }, [dataMoviesGenre]);
 
   return {
-    popularMovies,
+    popularMovies: dataMoviesGenre,
     loading,
     focusMovie,
   };

@@ -8,12 +8,14 @@ interface State {
   loading: boolean;
   dataMovies: IDataMovie[];
   popularMovies: ITmdb[];
+  dataMoviesGenre: ITmdb[];
   focusMovie: ITmdb | null;
 }
 
 const initialState: State = {
   loading: false,
   dataMovies: [],
+  dataMoviesGenre: [],
   popularMovies: [],
   focusMovie: null,
 };
@@ -26,7 +28,13 @@ export const moviesSlice = createSlice({
       state.loading = action.payload;
     },
     getMovies(state: State, action) {
-      state.dataMovies = action.payload;
+      if (action.payload.genre === "all") {
+        state.dataMovies = action.payload.list;
+        state.dataMoviesGenre = [];
+      } else {
+        state.dataMoviesGenre = action.payload.list;
+        state.dataMovies = [];
+      }
     },
     getPopularMovies(state: State, action) {
       state.popularMovies = action.payload;
@@ -50,27 +58,16 @@ export const {
 
 export default moviesSlice.reducer;
 
-export function getAsyncMovies() {
+export function getAsyncMovies(genre: GenreIdentify) {
   return async function Handler(dispatch: Dispatch<AnyAction>) {
     try {
       dispatch(setLoading(true));
-      const moviesList = await MoviesAPI.getMoviesList();
+      const moviesList =
+        genre === "all"
+          ? await MoviesAPI.getMoviesList()
+          : await MoviesAPI.getMoviesByGenre(genre);
 
-      return dispatch(getMovies(moviesList));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };
-}
-
-export function getAsyncPopularMovies() {
-  return async function Handler(dispatch: Dispatch<AnyAction>) {
-    try {
-      dispatch(setLoading(true));
-      const moviesList = await MoviesAPI.getMoviesByCategory("popular");
-      return dispatch(getPopularMovies(moviesList));
+      return dispatch(getMovies({ list: moviesList, genre }));
     } catch (error) {
       console.log(error);
     } finally {

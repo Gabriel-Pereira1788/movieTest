@@ -25,6 +25,8 @@ function ListMovies({ popularMovies }: ListMoviesProps) {
     <>
       {popularMovies && popularMovies.length > 0 && (
         <FlatListAnimated
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
           pagingEnabled
           snapToAlignment="center"
           decelerationRate="fast"

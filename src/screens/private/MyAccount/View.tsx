@@ -8,12 +8,20 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavigationProps } from "../../../router/navigation";
 import { useMyAccount } from "./useMyAccount";
 import { SafeAreaView } from "react-native-safe-area-context";
+import RenderIF from "../../../components/RenderIF/View";
 
 export default function MyAccount({
   navigation,
 }: NavigationProps<"MyAccount">) {
-  const { formData, errors, loading, handleFormData, onSubmit, signOut } =
-    useMyAccount();
+  const {
+    formData,
+    errors,
+    loading,
+    handleFormData,
+    onSubmit,
+    handleSignOut,
+    pickImage,
+  } = useMyAccount();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
       <S.VStack
@@ -30,6 +38,7 @@ export default function MyAccount({
           px={3}
         >
           <TouchableOpacity
+            onPress={handleSignOut}
             style={{
               alignItems: "center",
               flexDirection: "row",
@@ -50,8 +59,21 @@ export default function MyAccount({
           alignItems="center"
           justifyContent="center"
         >
-          <TouchableOpacity>
-            <FontAwesome name="user-circle-o" size={100} color="#ddd" />
+          <TouchableOpacity onPress={pickImage}>
+            <RenderIF
+              condition={!!formData.photoURL}
+              AlternativeComponent={
+                <FontAwesome name="user-circle-o" size={100} color="#ddd" />
+              }
+            >
+              <S.Image
+                source={{ uri: formData.photoURL }}
+                width={100}
+                height={100}
+                rounded="full"
+                alt="image-user"
+              />
+            </RenderIF>
           </TouchableOpacity>
           <Input
             placeholder="Email"

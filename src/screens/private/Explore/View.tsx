@@ -12,6 +12,7 @@ import RenderIF from "../../../components/RenderIF/View";
 import AllMovies from "./components/AllMovies/View";
 import FilteredMovies from "./components/FilteredMovies/View";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Header from "./components/Header/View";
 type Props = {};
 
 export default function Explore({}: Props) {
@@ -20,7 +21,6 @@ export default function Explore({}: Props) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
       <S.VStack
-        paddingTop={10}
         flex={1}
         backgroundColor="background.main"
         alignItems="center"
@@ -28,8 +28,9 @@ export default function Explore({}: Props) {
       >
         <RenderIF
           condition={!loading && !!dataMovies}
-          AlternativeComponent={<S.Spinner size="lg" color="red.600" />}
+          AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
         >
+          <Header />
           <S.Box p={3}>
             <SearchBar
               value={filters.name}
@@ -57,11 +58,11 @@ export default function Explore({}: Props) {
             }}
             renderItem={({ item, index }) => (
               <TouchableOpacity
-                onPress={() => handleFilters({ category: item.identify })}
+                onPress={() => handleFilters({ category: item.identify! })}
               >
                 <Category
                   key={index}
-                  text={item.title}
+                  text={item.name}
                   identify={item.identify}
                   currentCategory={filters.category}
                 />

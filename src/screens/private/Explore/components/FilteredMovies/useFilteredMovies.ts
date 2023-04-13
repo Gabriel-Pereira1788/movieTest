@@ -3,29 +3,17 @@ import { IDataMovie } from "../../../../../models/DataMovie";
 import { Filter } from "../../models";
 import { ITmdb } from "../../../../../models/Itmdb";
 import { uniqueObjectList } from "../../../../../helpers/utils/uniqueObjectList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
 type Props = {
   dataMovies?: IDataMovie[];
   filters: Filter;
 };
 
 export function useFilteredMovies({ dataMovies, filters }: Props) {
+  const { dataMoviesGenre } = useSelector((state: RootState) => state.movies);
   const displayMovies = React.useMemo(() => {
-    let filteredMovies =
-      dataMovies && dataMovies.length > 0
-        ? dataMovies.reduce<ITmdb[]>((acc, data) => {
-            const newArr = [...acc, ...data.list];
-            acc = uniqueObjectList(newArr, "title");
-            return acc;
-          }, [])
-        : [];
-
-    if (!!filters.category && filters.category !== "all") {
-      filteredMovies =
-        dataMovies && dataMovies.length > 0
-          ? dataMovies.find(({ identify }) => filters.category === identify)
-              ?.list || []
-          : [];
-    }
+    let filteredMovies = dataMoviesGenre || [];
 
     if (!!filters.name) {
       filteredMovies =
@@ -37,7 +25,7 @@ export function useFilteredMovies({ dataMovies, filters }: Props) {
     }
 
     return filteredMovies;
-  }, [dataMovies, filters]);
+  }, [dataMoviesGenre, filters]);
   return { displayMovies };
 }
 

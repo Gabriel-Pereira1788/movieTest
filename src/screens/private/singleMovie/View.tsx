@@ -22,16 +22,20 @@ import ListCast from "./components/ListCast/View";
 export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
   const { id } = route.params;
 
-  const { dataMovie, stylesAnimation, styleRotate, toggleMostView } =
+  const { dataMovie, stylesAnimation, styleRotate, loading, toggleMostView } =
     useSingleMovie({ id });
 
+  console.log(dataMovie?.data);
   return (
     <S.VStack
       flex={1}
-      justifyContent="flex-start"
+      justifyContent="center"
       backgroundColor="background.main"
     >
-      <RenderIF condition={!!dataMovie && !!dataMovie.data}>
+      <RenderIF
+        condition={!loading && !!dataMovie && !!dataMovie.data}
+        AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}
+      >
         {dataMovie?.data && dataMovie?.data.poster_path && (
           <Poster
             toggleMostView={toggleMostView}

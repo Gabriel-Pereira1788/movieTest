@@ -1,17 +1,21 @@
 import React from "react";
 import * as S from "native-base";
 import { SIZES } from "../../helpers/constants/sizes";
-import { MaterialIcons, Fontisto } from "@expo/vector-icons";
+import { MaterialIcons, Fontisto, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { FontAwesome } from "@expo/vector-icons";
+
+import RenderIF from "../RenderIF/View";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import TabWrapper from "./TabWrapper/View";
 interface BottomTabProps extends S.IStackProps {
   currentPath: string;
 }
 
 export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
   const navigation = useNavigation();
-
+  const { user } = useSelector((state: RootState) => state.auth);
   return (
     <S.HStack
       backgroundColor={"rgba(0,0,0,0.7)"}
@@ -24,23 +28,52 @@ export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
       space={5}
       {...rest}
     >
-      <TouchableOpacity>
-        <MaterialIcons
-          name="movie"
-          size={30}
-          color={currentPath === "movie" ? "#c54444" : "#fff"}
-        />
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Home", { screen: "home" })}
+      >
+        <TabWrapper
+          isCurrentPath={currentPath === "movie"}
+          screenTitle="Filmes"
+        >
+          <MaterialIcons name="movie" size={30} color={"#fff"} />
+        </TabWrapper>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => navigation.navigate("Home", { screen: "explore" })}
       >
-        <MaterialIcons name="search" size={30} color="#fff" />
+        <TabWrapper
+          isCurrentPath={currentPath === "explore"}
+          screenTitle="Explorar"
+        >
+          <MaterialIcons name="search" size={30} color={"#fff"} />
+        </TabWrapper>
       </TouchableOpacity>
+
       <TouchableOpacity>
-        <Fontisto name="favorite" size={25} color="#fff" />
+        <TabWrapper
+          isCurrentPath={currentPath === "favorites"}
+          screenTitle="Favoritos"
+        >
+          <Fontisto name="favorite" size={25} color="#fff" />
+        </TabWrapper>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
-        <FontAwesome name="user-circle-o" size={25} color="#fff" />
+        <RenderIF
+          condition={!!user && !!user.photoURL}
+          AlternativeComponent={
+            <FontAwesome name="user-circle-o" size={25} color="#fff" />
+          }
+        >
+          <S.Image
+            source={{ uri: !!user && user.photoURL ? user!.photoURL : "" }}
+            width={10}
+            height={10}
+            rounded="full"
+            alt="image-user"
+          />
+        </RenderIF>
       </TouchableOpacity>
     </S.HStack>
   );

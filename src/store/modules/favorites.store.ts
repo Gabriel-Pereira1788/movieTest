@@ -1,0 +1,1 @@
+const favorites = new Map();

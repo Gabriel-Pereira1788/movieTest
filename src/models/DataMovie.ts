@@ -6,7 +6,7 @@ export interface IRandomData {
 }
 
 export interface IDataMovie {
-  identify: string;
+  identify: GenreIdentify;
   title: string;
   list: ITmdb[];
 }

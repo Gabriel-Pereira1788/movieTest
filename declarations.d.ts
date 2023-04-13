@@ -7,3 +7,13 @@ declare module "*.svg" {
   export default content;
 }
 
+type GenreIdentify =
+  | "all"
+  | "popular"
+  | "top"
+  | "action"
+  | "comedy"
+  | "horror"
+  | "romance"
+  | "documentaries";
+

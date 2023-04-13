@@ -34,13 +34,15 @@ export default singleMovie.reducer;
 
 export function getAsyncSingleMovie(id: number) {
   return async function Handler(dispatch: Dispatch<AnyAction>) {
+    dispatch(setLoading(true));
     try {
-      dispatch(setLoading(true));
       const dataMovie = await MoviesAPI.getMovieById(id);
 
       return dispatch(getSingleMovie(dataMovie));
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 }

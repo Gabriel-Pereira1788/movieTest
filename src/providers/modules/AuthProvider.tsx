@@ -19,6 +19,8 @@ export default function AuthProvider({ children }: Props) {
           userCredentials.displayName
         );
         dispatch(setUser(dataUser));
+
+        console.log(dataUser);
       } else {
         dispatch(cleanUpAuth());
       }
