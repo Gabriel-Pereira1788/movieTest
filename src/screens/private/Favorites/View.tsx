@@ -7,12 +7,19 @@ import CardFavorite from "./components/CardFavorite/View";
 import BottomTab from "../../../components/BottomTab/View";
 import RenderIF from "../../../components/RenderIF/View";
 import ErrorMessage from "../../../components/ErrorMessage/View";
+import { ListRenderItem } from "react-native/types";
+import { FavoriteData } from "../../../repositories/database/models/FavoriteModel";
 
 type Props = {};
 
 export default function Favorites({}: Props) {
   const { dataFavorites, loading, searchText, handleSearchText } =
     useFavorites();
+
+  const renderItem: ListRenderItem<FavoriteData> = React.useCallback(
+    ({ item }) => <CardFavorite {...item} />,
+    []
+  );
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0f0f16" }}>
       <S.VStack
@@ -25,7 +32,7 @@ export default function Favorites({}: Props) {
         <RenderIF
           condition={!loading && dataFavorites.length > 0}
           AlternativeComponent={
-            dataFavorites.length === 0 ? (
+            !loading && dataFavorites.length === 0 ? (
               <ErrorMessage message="Nenhum filme adicionado..." />
             ) : (
               <S.Box flex={1} alignItems="center" justifyContent="center">
@@ -47,7 +54,7 @@ export default function Favorites({}: Props) {
               paddingHorizontal: 20,
             }}
             keyExtractor={(item) => item.id!}
-            renderItem={({ item }) => <CardFavorite {...item} />}
+            renderItem={renderItem}
           />
         </RenderIF>
       </S.VStack>

@@ -25,7 +25,9 @@ export function useExplore(): ExploreViewModel {
   }
 
   React.useEffect(() => {
-    dispatch(getAsyncMovies(filters.category!));
+    navigation.addListener("focus", () => {
+      dispatch(getAsyncMovies(filters.category!));
+    });
 
     navigation.addListener("blur", () => {
       dispatch(cleanUp());

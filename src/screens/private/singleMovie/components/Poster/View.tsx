@@ -5,18 +5,29 @@ import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MostView } from "../../models";
 import { PanGestureHandler } from "react-native-gesture-handler";
+import {
+  TMBD_BACKDROP_PREVIEW,
+  TMBD_BACKDROP_URL,
+} from "../../../../../helpers/constants/TMDB";
+import ProgressiveImage from "../../../../../components/ProgressiveImage/View";
 interface PosterProps {
   imagePath: string;
   toggleMostView: MostView;
 }
 
 export default function Poster({ imagePath, toggleMostView }: PosterProps) {
+  console.log(imagePath);
   return (
     <S.Box width="100%" flex={2} position="relative">
-      <S.Image
-        source={{ uri: imagePath }}
-        flex={1}
-        resizeMode="cover"
+      <ProgressiveImage
+        source={{ uri: `${TMBD_BACKDROP_URL}${imagePath}` }}
+        thumbnailSource={`${TMBD_BACKDROP_PREVIEW}${imagePath}`}
+        progressiveRenderingEnabled={true}
+        style={{ flex: 1, width: "100%", height: "100%" }}
+        containerProps={{
+          width: "100%",
+          height: "100%",
+        }}
         alt="image-movie"
       />
 
@@ -38,7 +49,7 @@ export default function Poster({ imagePath, toggleMostView }: PosterProps) {
           }}
         >
           <ImageBackground
-            source={{ uri: imagePath }}
+            source={{ uri: `${TMBD_BACKDROP_URL}${imagePath}` }}
             blurRadius={70}
             alt="blur-image"
             style={{

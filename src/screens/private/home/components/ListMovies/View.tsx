@@ -17,10 +17,10 @@ function ListMovies({ popularMovies }: ListMoviesProps) {
 
   const { viewConfig, onViewableItemsChanged } = useListMovies();
 
-  const renderItem: ListRenderItem<ITmdb> = ({ item }) => (
-    <CardMovie {...item} />
+  const renderItem: ListRenderItem<ITmdb> = React.useCallback(
+    ({ item }) => <CardMovie {...item} />,
+    []
   );
-
   return (
     <>
       {popularMovies && popularMovies.length > 0 && (

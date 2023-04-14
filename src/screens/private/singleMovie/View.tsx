@@ -69,7 +69,7 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
         {dataMovie && dataMovie.poster_path && (
           <Poster
             toggleMostView={toggleMostView}
-            imagePath={`${TMBD_BACKDROP_URL}${dataMovie.poster_path}`}
+            imagePath={`${dataMovie.poster_path}`}
           />
         )}
         <PanGestureHandler

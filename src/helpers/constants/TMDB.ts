@@ -3,6 +3,7 @@ import { Genre } from "../../models/Itmdb";
 export const TMDB_KEY = "caafc650f33fc68a6f16bf46a5c6ee13";
 
 export const TMBD_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
+export const TMBD_BACKDROP_PREVIEW = "https://image.tmdb.org/t/p/w300";
 
 export const TMDB_GENRES: Genre[] = [
   { id: 28, name: "Ação", identify: "action" },

@@ -1,10 +1,14 @@
 import React from "react";
 import * as S from "native-base";
 import { ITmdb } from "../../../../../models/Itmdb";
-import { TMBD_BACKDROP_URL } from "../../../../../helpers/constants/TMDB";
+import {
+  TMBD_BACKDROP_PREVIEW,
+  TMBD_BACKDROP_URL,
+} from "../../../../../helpers/constants/TMDB";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import ProgressiveImage from "../../../../../components/ProgressiveImage/View";
 
 type Props = Pick<ITmdb, "backdrop_path" | "title" | "id"> & {
   w?: number;
@@ -21,15 +25,25 @@ export default function CardMovie({ backdrop_path, title, id, w, h }: Props) {
         }
       >
         <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
-          <S.Image
+          <ProgressiveImage
             source={{
               uri: `${TMBD_BACKDROP_URL}${backdrop_path}`,
             }}
-            width={w || 200}
-            height={h || 250}
-            borderRadius="lg"
-            alt="image-movie"
+            thumbnailSource={`${TMBD_BACKDROP_PREVIEW}${backdrop_path}`}
+            progressiveRenderingEnabled={true}
+            containerProps={{
+              style: {
+                borderRadius: 20,
+                borderColor: "#dddddd35",
+                borderWidth: 1,
+              },
+            }}
+            style={{
+              width: w || 200,
+              height: h || 250,
+            }}
           />
+
           <S.Text fontWeight={500} color="#ddd" fontSize="md">
             {title}
           </S.Text>
