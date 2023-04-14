@@ -29,5 +29,8 @@ Caso haja qualquer erro nesse fluxo voce ainda pode optar por instalar a versão
 
 
 ### Tela inicial 
+<div align="center">
+  <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/home.png" width="300px" />
+</div>
 
-![Tela inicial](https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/home.png)
+
