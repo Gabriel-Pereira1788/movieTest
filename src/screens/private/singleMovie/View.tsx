@@ -67,10 +67,7 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
         }
       >
         {dataMovie && dataMovie.poster_path && (
-          <Poster
-            toggleMostView={toggleMostView}
-            imagePath={`${dataMovie.poster_path}`}
-          />
+          <Poster imagePath={`${dataMovie.poster_path}`} />
         )}
         <PanGestureHandler
           onGestureEvent={toggleMostView}

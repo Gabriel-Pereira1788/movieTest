@@ -1,10 +1,8 @@
 import React from "react";
 import * as S from "native-base";
 import { ImageBackground } from "react-native";
-import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { MostView } from "../../models";
-import { PanGestureHandler } from "react-native-gesture-handler";
+
 import {
   TMBD_BACKDROP_PREVIEW,
   TMBD_BACKDROP_URL,
@@ -12,10 +10,9 @@ import {
 import ProgressiveImage from "../../../../../components/ProgressiveImage/View";
 interface PosterProps {
   imagePath: string;
-  toggleMostView: MostView;
 }
 
-export default function Poster({ imagePath, toggleMostView }: PosterProps) {
+export default function Poster({ imagePath }: PosterProps) {
   console.log(imagePath);
   return (
     <S.Box width="100%" flex={2} position="relative">

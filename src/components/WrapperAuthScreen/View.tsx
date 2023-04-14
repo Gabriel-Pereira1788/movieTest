@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "native-base";
 import { ImageBackground } from "react-native";
-import { Asset } from "expo-asset";
 
 import ImgBack from "../../assets/images/bg-netflix.jpg";
 import Animated, { FadeInLeft } from "react-native-reanimated";
