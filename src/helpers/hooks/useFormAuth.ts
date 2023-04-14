@@ -58,7 +58,7 @@ export function useFormAuth<T extends keyof RootParamListI>({
           alertRef.current.hide();
         }
         await submit();
-        navigation && navigation.replace("Home");
+        navigation && navigation.replace("Home", { screen: "home" });
 
         alertRef.current?.open({
           isOpen: true,
@@ -67,7 +67,7 @@ export function useFormAuth<T extends keyof RootParamListI>({
         });
       } catch (error) {
         const Error = error as { message: string };
-
+        console.log(Error);
         let messageError = "";
         Object.entries(ERRORS_FIREBASE_MESSAGE).forEach(([key, value]) => {
           if (Error.message.includes(key)) {

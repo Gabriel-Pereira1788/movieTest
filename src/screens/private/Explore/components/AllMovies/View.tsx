@@ -33,7 +33,8 @@ export default function AllMovies({ dataMovies }: AllMoviewsProps) {
           data={item.list}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
-            margin: 20,
+            marginHorizontal: 10,
+
             width: "auto",
             height: "auto",
             alignItems: "center",
@@ -49,6 +50,7 @@ export default function AllMovies({ dataMovies }: AllMoviewsProps) {
   return (
     <S.FlatList
       data={dataMovies}
+      ListFooterComponent={() => <S.Box h={70}></S.Box>}
       contentContainerStyle={{
         paddingHorizontal: 10,
       }}

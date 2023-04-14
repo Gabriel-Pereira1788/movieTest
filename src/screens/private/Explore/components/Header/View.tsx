@@ -15,7 +15,8 @@ export default function Header({}: Props) {
   return (
     <S.HStack
       w="100%"
-      py={10}
+      pt={10}
+      pb={3}
       px={4}
       alignItems="center"
       justifyContent="space-between"

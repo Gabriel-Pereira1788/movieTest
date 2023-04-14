@@ -13,6 +13,7 @@ export default function AuthProvider({ children }: Props) {
 
   React.useEffect(() => {
     auth().onAuthStateChanged((userCredentials) => {
+      console.log("user-credentials", userCredentials);
       if (userCredentials && userCredentials.displayName) {
         const dataUser = formatUser(
           userCredentials,

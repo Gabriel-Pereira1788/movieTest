@@ -17,6 +17,7 @@ function FilteredMovies({ dataMovies, filters }: FilteredMoviesProps) {
     <S.FlatList
       data={displayMovies}
       showsVerticalScrollIndicator={false}
+      ListFooterComponent={() => <S.Box h={70}></S.Box>}
       numColumns={1}
       contentContainerStyle={{
         flexGrow: 1,

@@ -37,7 +37,7 @@ export default function Explore({}: Props) {
           }
         >
           <Header />
-          <S.Box p={3}>
+          <S.Box px={3}>
             <SearchBar
               value={filters.name}
               onChangeText={(value) => {

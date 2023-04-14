@@ -17,6 +17,8 @@ export function useAuth() {
       result.user.updateProfile({
         displayName: data.name!,
       });
+      const dataUser = formatUser(result.user, data.name!);
+      dispatch(setUser(dataUser));
     }
   }
 

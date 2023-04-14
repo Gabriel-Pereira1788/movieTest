@@ -7,6 +7,7 @@ import { NavigationProps } from "../../../router/navigation";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { useFormAuth } from "../../../helpers/hooks/useFormAuth";
+import InputPassword from "../../../components/Input/components/InputPassword";
 
 export default function SignIn({ navigation }: NavigationProps<"SignIn">) {
   const { formData, loading, errors, onSubmit, handleFormData } = useFormAuth({
@@ -30,7 +31,7 @@ export default function SignIn({ navigation }: NavigationProps<"SignIn">) {
         error={errors?.email}
         onChangeText={(value) => handleFormData("email", value)}
       />
-      <Input
+      <InputPassword
         placeholder="Senha"
         backgroundColor="#131212"
         value={formData.password}

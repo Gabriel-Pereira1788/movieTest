@@ -71,7 +71,7 @@ export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
         <RenderIF
           condition={!!user && !!user.photoURL}
           AlternativeComponent={
-            <FontAwesome name="user-circle-o" size={25} color="#fff" />
+            <FontAwesome name="user-circle-o" size={30} color="#fff" />
           }
         >
           <S.Image

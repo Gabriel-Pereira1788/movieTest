@@ -5,6 +5,7 @@ import Input from "../../../components/Input/View";
 import Button from "../../../components/Button/View";
 import { NavigationProps } from "../../../router/navigation";
 import { useFormAuth } from "../../../helpers/hooks/useFormAuth";
+import InputPassword from "../../../components/Input/components/InputPassword";
 
 export default function SignUp({ navigation }: NavigationProps<"SignUp">) {
   const { formData, loading, errors, onSubmit, handleFormData } = useFormAuth({
@@ -17,7 +18,7 @@ export default function SignUp({ navigation }: NavigationProps<"SignUp">) {
     typeSubmit: "signUp",
   });
   return (
-    <WrapperAuthScreen title="Entrar">
+    <WrapperAuthScreen title="Cadastar-se">
       <Input
         placeholder="Nome"
         backgroundColor="#131212"
@@ -32,7 +33,7 @@ export default function SignUp({ navigation }: NavigationProps<"SignUp">) {
         error={errors?.email}
         onChangeText={(value) => handleFormData("email", value)}
       />
-      <Input
+      <InputPassword
         placeholder="Senha"
         backgroundColor="#131212"
         value={formData.password}

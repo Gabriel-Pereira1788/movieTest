@@ -14,12 +14,12 @@ export default function SearchBar({ ...rest }: SearchBarProps) {
       borderRadius="lg"
       borderColor="#dddddd3d"
       focusOutlineColor=""
-      borderWidth={1}
       rightElement={
         <S.Box mr={5}>
           <AntDesign name="search1" size={20} color="#ddd" />
         </S.Box>
       }
+      borderWidth={1}
       {...rest}
     />
   );

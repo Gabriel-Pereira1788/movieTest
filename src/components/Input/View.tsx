@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "native-base";
 import RenderIF from "../RenderIF/View";
 
-interface InputProps extends S.IInputProps {
+export interface InputProps extends S.IInputProps {
   error?: string;
 }
 
