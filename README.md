@@ -27,6 +27,12 @@ Caso queira rodar o projeto na versão de desenvolvimento siga esse passo a pass
 
 Caso haja qualquer erro nesse fluxo voce ainda pode optar por instalar a versão apk citada anteriormente.
 
+## Tela de autenticação
+
+<div align="center">
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/login.png" width="300px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/register.png" width="300px" />
+</div>
 
 ### Tela inicial 
 <div align="center">
