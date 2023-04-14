@@ -12,6 +12,13 @@ export default function Info({
   genres,
   overview,
 }: ISingleMovie | FavoriteData) {
+  const min_vote = 100;
+  const max_average = 10;
+
+  const vote =
+    (vote_count! / (vote_count! + min_vote)) *
+    (vote_average! / max_average) *
+    5;
   return (
     <S.VStack py={3} width="100%" overflow="hidden">
       <S.VStack padding={5} space={3}>
@@ -19,7 +26,7 @@ export default function Info({
           <AntDesign name="star" size={24} color="#eea12f" />
 
           <S.Text color="#fff" fontWeight={500}>
-            4.8 ({vote_count})
+            {vote.toFixed(2)} ({vote_count})
           </S.Text>
         </S.HStack>
         <S.HStack alignItems="center" justifyContent="space-between">

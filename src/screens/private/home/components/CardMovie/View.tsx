@@ -20,7 +20,6 @@ interface CardMovieProps extends ITmdb {}
 export default function CardMovie({ backdrop_path, id }: CardMovieProps) {
   const { animatedStyle, redirectScreen } = useCardMovie({ id });
 
-  console.log(backdrop_path);
   return (
     <TouchableOpacity onPress={redirectScreen}>
       <S.Box mx={2}>

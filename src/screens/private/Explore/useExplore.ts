@@ -31,7 +31,15 @@ export function useExplore(): ExploreViewModel {
 
     navigation.addListener("blur", () => {
       dispatch(cleanUp());
+      setFilters({
+        name: "",
+        category: "all",
+      });
     });
+  }, []);
+
+  React.useEffect(() => {
+    dispatch(getAsyncMovies(filters.category!));
   }, [filters.category]);
 
   return {

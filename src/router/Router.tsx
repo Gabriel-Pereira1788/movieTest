@@ -11,14 +11,12 @@ import Explore from "../screens/private/Explore/View";
 import Favorites from "../screens/private/Favorites/View";
 import { RootParamListI } from "./navigation";
 import SingleMovie from "../screens/private/singleMovie/View";
-import AddFavorite from "../components/AddFavorite/View";
 import SignIn from "../screens/public/SignIn/View";
 import SignOut from "../screens/public/SignUp/View";
 import SignUp from "../screens/public/SignUp/View";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import MyAccount from "../screens/private/MyAccount/View";
-import ShareMovie from "../components/ShareMovie/View";
 
 type Props = {};
 

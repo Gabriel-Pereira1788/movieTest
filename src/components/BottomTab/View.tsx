@@ -9,6 +9,7 @@ import RenderIF from "../RenderIF/View";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import TabWrapper from "./TabWrapper/View";
+import { useFonts } from "expo-font";
 interface BottomTabProps extends S.IStackProps {
   currentPath: string;
 }
@@ -16,6 +17,11 @@ interface BottomTabProps extends S.IStackProps {
 export default function BottomTab({ currentPath, ...rest }: BottomTabProps) {
   const navigation = useNavigation();
   const { user } = useSelector((state: RootState) => state.auth);
+  const [fontsLoaded] = useFonts({
+    MaterialIcons: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf"),
+    FontAwesome: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome.ttf"),
+    Fontisto: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Fontisto.ttf"),
+  });
   return (
     <S.HStack
       backgroundColor={"rgba(0,0,0,0.7)"}

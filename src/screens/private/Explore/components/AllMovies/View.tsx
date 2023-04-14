@@ -5,6 +5,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import CardMovie from "../CardMovie/View";
 import { ListRenderItem } from "react-native/types";
 import { ITmdb } from "../../../../../models/Itmdb";
+import { SIZES } from "../../../../../helpers/constants/sizes";
 
 interface AllMoviewsProps {
   dataMovies?: IDataMovie[];
@@ -17,41 +18,42 @@ export default function AllMovies({ dataMovies }: AllMoviewsProps) {
     },
     []
   );
+
+  const renderListItem: ListRenderItem<IDataMovie> = React.useCallback(
+    ({ item, index }) => (
+      <S.Box key={index}>
+        <Animated.View entering={FadeInDown.delay(150).duration(150)}>
+          <S.Text bold color="#ddd" fontSize="xl" my={3}>
+            {item.title}
+          </S.Text>
+        </Animated.View>
+        <S.FlatList
+          pagingEnabled
+          horizontal
+          data={item.list}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            margin: 20,
+            width: "auto",
+            height: "auto",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          renderItem={renderItem}
+        />
+      </S.Box>
+    ),
+    []
+  );
+
   return (
-    <S.ScrollView
+    <S.FlatList
+      data={dataMovies}
       contentContainerStyle={{
-        flexGrow: 2,
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
         paddingHorizontal: 10,
       }}
-    >
-      {dataMovies &&
-        dataMovies.length > 0 &&
-        dataMovies.map((data, index) => (
-          <S.Box key={index} flex={1}>
-            <Animated.View entering={FadeInDown.delay(150).duration(150)}>
-              <S.Text bold color="#ddd" fontSize="xl" my={3}>
-                {data.title}
-              </S.Text>
-            </Animated.View>
-            <S.FlatList
-              pagingEnabled
-              horizontal
-              data={data.list}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{
-                marginVertical: 20,
-                width: "auto",
-                height: "auto",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              renderItem={renderItem}
-            />
-          </S.Box>
-        ))}
-    </S.ScrollView>
+      renderItem={renderListItem}
+    />
   );
 }
 
