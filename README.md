@@ -2,11 +2,11 @@
 
 Explicação do uso e build do projeto
 
-- tecnologias utilizadas e suas versões OBS: Garanta que as versões do seu sistema estejam compativeis
+tecnologias utilizadas e suas versões OBS: Garanta que as versões do seu sistema estejam compativeis
 
-yarn:1.22.19
-npm:9.2.0
-node:19.4.0
+-yarn:1.22.19
+-npm:9.2.0
+-node:19.4.0
 
 #Observações
 -Em Modo de desenvolvimento o expo caso desconectado da internet não renderiza os icones por isso disponibilize uma versão apk de release 
