@@ -10,8 +10,8 @@ tecnologias utilizadas e suas versões OBS: Garanta que as versões do seu siste
 
 ## Observações
 - Em Modo de desenvolvimento o expo caso desconectado da internet não renderiza os icones por isso disponibilizeI uma versão apk de release 
-ela esta disponivel na pasta "apk" na raiz do projeto. Voce pode arrastar e soltar essa versão apk dentro do emulador e ele o instalara,ou
-pode utilizar essa versão no seu dispositivo fisico. 
+ela esta disponivel na pasta "public" na raiz do projeto. Voce pode arrastar e soltar essa versão apk dentro do emulador e ele o instalara,ou
+pode utilizar essa versão no seu dispositivo fisico. Observe  a imagem abaixo.
 
 
 ![Caminho apk](https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/apkPath.png)
@@ -36,11 +36,28 @@ Caso haja qualquer erro nesse fluxo voce ainda pode optar por instalar a versão
 ### Tela de filme individual
 
 <div align="center">
-   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie.png" width="300px" />
-   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie2.png" width="300px" />
-   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie3.png" width="300px" />
-   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie4.png" width="300px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie.png" width="200px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie2.png" width="200px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie3.png" width="200px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/singleMovie4.png" width="200px" />
 </div>
+
+
+### Tela de explorar 
+
+<div align="center">
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/explore.png" width="300px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/explore2.png" width="300px" />
+</div>
+
+
+### Tela de favoritos
+
+<div align="center">
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/favorites.png" width="300px" />
+   <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/favorites2.png" width="300px" />
+</div>
+
 
 
 
