@@ -2,7 +2,7 @@
 
 Explicação do uso e build do projeto
 
-# tecnologias utilizadas e suas versões OBS: Garanta que as versões do seu sistema estejam compativeis
+- tecnologias utilizadas e suas versões OBS: Garanta que as versões do seu sistema estejam compativeis
 
 yarn:1.22.19
 npm:9.2.0
