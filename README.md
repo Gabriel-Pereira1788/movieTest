@@ -36,7 +36,7 @@ Caso haja qualquer erro nesse fluxo você ainda pode optar por instalar a versã
 
 ### Tela inicial 
 <div align="center">
-  <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/home.png" width="300px" />
+  <img src="https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/home.png" width="500px" />
 </div>
 
 ### Tela de filme individual
