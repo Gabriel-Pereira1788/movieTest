@@ -16,7 +16,7 @@ pode utilizar essa versão no seu dispositivo físico. Observe  a imagem abaixo.
 
 ![Caminho apk](https://github.com/Gabriel-Pereira1788/movieTest/blob/main/public/screenshots/apkPath.png)
 
-Adotei essa medida para melhorar o teste no fluxo offline.
+Adotei essa medida para melhorar o fluxo offline de teste , essa medida também pode ser utilizada como opção para qualquer erro que possam vim a acontecer na build de desenvolviménto.
 
 ## Passos para instalação em desenvolvimento
 Caso queira instalar o projeto na versão de desenvolvimento siga esse passo a passo.
