@@ -131,7 +131,7 @@ export function getAsyncFavoriteByMovieId(movieId: number) {
       const data = await favoritesController.getById(movieId);
       dispatch(getSingleFavorite(data));
     } catch (error) {
-      console.log("async-favorite-movie", error);
+      console.log("async-favorite-error", error);
       dispatch(setError(error));
     } finally {
       dispatch(setActionLoading(false));

@@ -13,7 +13,6 @@ interface PosterProps {
 }
 
 export default function Poster({ imagePath }: PosterProps) {
-  console.log(imagePath);
   return (
     <S.Box width="100%" flex={2} position="relative">
       <ProgressiveImage
