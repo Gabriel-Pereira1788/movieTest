@@ -12,10 +12,11 @@ import { SIZES } from "../../../../../helpers/constants/sizes";
 //*types
 import { ITmdb } from "../../../../../models/Itmdb";
 import { useNavigation } from "@react-navigation/native";
+import { CardMovieViewModel } from "./models";
 
 type Props = Pick<ITmdb, "id">;
 
-export function useCardMovie({ id }: Props) {
+export function useCardMovie({ id }: Props): CardMovieViewModel {
   const { focusMovie } = useSelector((state: RootState) => state.movies);
 
   const navigation = useNavigation();

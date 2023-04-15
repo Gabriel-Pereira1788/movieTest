@@ -84,7 +84,7 @@ export function useSingleMovie({ id, type }: Props): SingleMovieViewModel {
       dispatch(cleanUp());
       dispatch(cleanUpFavorites());
     });
-  }, [type]);
+  }, []);
 
   return {
     dataMovie: favoriteData || dataMovie,

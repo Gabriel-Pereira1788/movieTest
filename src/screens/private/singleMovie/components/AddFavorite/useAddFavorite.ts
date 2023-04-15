@@ -11,12 +11,9 @@ import {
   STATUS_MESSAGES_REMOVE,
 } from "../../../../../helpers/constants/statusMessages";
 import { modalRef } from "../../../../../components/Modal/View";
+import { AddFavoriteViewModel } from "./models";
 
-type Props = {
-  type: "favorite" | "movie";
-};
-
-export function useAddFavorite({ type }: Props) {
+export function useAddFavorite(): AddFavoriteViewModel {
   const { favoriteData, actionLoading, error, status } = useSelector(
     (state: RootState) => state.favorites
   );

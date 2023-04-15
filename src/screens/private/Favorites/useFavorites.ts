@@ -6,8 +6,9 @@ import {
   cleanUpFavorites,
   getAsyncFavorites,
 } from "../../../store/modules/favorites.store";
+import { FavoritesViewModel } from "./models";
 
-export function useFavorites() {
+export function useFavorites(): FavoritesViewModel {
   const { dataFavorites, loading, error } = useSelector(
     (state: RootState) => state.favorites
   );

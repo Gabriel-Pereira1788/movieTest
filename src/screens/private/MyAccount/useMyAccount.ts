@@ -6,7 +6,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamListI } from "../../../router/navigation";
 import * as ImagePicker from "expo-image-picker";
 import { useAuth } from "../../../helpers/hooks/useAuth";
-export function useMyAccount() {
+import { MyAccountViewModel } from "./models";
+
+export function useMyAccount(): MyAccountViewModel {
   const { user } = useSelector((state: RootState) => state.auth);
   const { signOut } = useAuth();
 

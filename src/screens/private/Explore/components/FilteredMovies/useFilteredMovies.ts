@@ -10,19 +10,6 @@ type Props = {
   filters: Filter;
 };
 
-function filterAllMovies(dataMovies?: IDataMovie[]) {
-  if (dataMovies) {
-    const dataFiltered = dataMovies.reduce((acc, data) => {
-      acc = [...acc, ...data.list];
-      return acc;
-    }, [] as ITmdb[]);
-
-    return uniqueObjectList(dataFiltered, "title");
-  }
-
-  return [];
-}
-
 export function useFilteredMovies({ dataMovies, filters }: Props) {
   const { dataMoviesGenre } = useSelector((state: RootState) => state.movies);
 

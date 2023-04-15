@@ -50,7 +50,7 @@ export default function SingleMovie({ route }: NavigationProps<"SingleMovie">) {
         >
           <Alert />
           <S.HStack space={2}>
-            <AddFavorite type={type} />
+            <AddFavorite />
             <ShareMovie />
           </S.HStack>
         </S.HStack>

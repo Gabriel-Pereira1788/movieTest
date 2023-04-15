@@ -6,18 +6,10 @@ import { modalRef } from "../../../../../components/Modal/View";
 import ActionsFavorite from "../../../../../components/ActionsFavorite/View";
 import { useAddFavorite } from "./useAddFavorite";
 import RenderIF from "../../../../../components/RenderIF/View";
-import Button from "../../../../../components/Button/View";
-import Alert from "../../../../../components/Alert/View";
 
-interface AddFavoriteProps {
-  type: "favorite" | "movie";
-}
-
-export default function AddFavorite({ type }: AddFavoriteProps) {
+export default function AddFavorite() {
   const { loading, dataMovie, error, isFavorite, toggleFavorite } =
-    useAddFavorite({
-      type,
-    });
+    useAddFavorite();
   function openModal() {
     modalRef.current?.show(() => (
       <ActionsFavorite
